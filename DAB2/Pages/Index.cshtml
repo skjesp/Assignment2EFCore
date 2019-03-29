@@ -8,3 +8,43 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+<h5>List of Courses</h5>
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>ContentId</th>
+        <th>CalendarId</th>
+    </tr>
+
+    @foreach (var course in @Model.Courses)
+    {
+        <tr>
+            <td>@course.CourseId</td>
+            <td>@course.Name</td>
+            <td>@course.ContentId</td>
+            <td>@course.CalendarId</td>
+        </tr>
+    }
+</table>
+
+<br/>
+
+<h5>List of Teachers</h5>
+
+<table>
+    <th>Id</th>
+    <th>Birthday</th>
+    <th>Name</th>
+
+    @foreach (var teacher in @Model.Teachers)
+    {
+        <td>@teacher.TeacherId</td>
+        <td>@teacher.Birthday</td>
+        <td>@teacher.Name</td>
+    }
+</table>
+
+
