@@ -13,7 +13,7 @@ namespace DAB2.Database
         public string Name { get; set; }
 
         [Required]
-        public string EnrolledData { get; set; }
+        public string EnrolledDate { get; set; }
 
         [Required]
         public string GraduationDate { get; set; }
