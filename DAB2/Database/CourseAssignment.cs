@@ -5,15 +5,11 @@ namespace DAB2.Database
 {
     public class CourseAssignment
     {
-        [Key]
-        public int CourseAssignmentId { get; set; } 
+        public int CourseId { get; set; }
+        public Course Course { get; set; }
+        public int AssignmentId { get; set; }
+        public Assignment Assignment { get; set; }
 
-        [Required]
-        public int MaxStudents { get; set; }
-
-        [Required]
-        public DateTime DueDate { get; set; }
-
-        public string CourseId { get; set; }
+        public bool Active { get; set; }
     }
 }

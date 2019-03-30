@@ -10,7 +10,6 @@
 </div>
 
 <h5>List of Courses</h5>
-
 <table>
     <tr>
         <th>Id</th>
@@ -32,29 +31,7 @@
 
 <br/>
 
-<h5>List of Teachers</h5>
-
-<table>
-    <tr>
-        <th>Id</th>
-        <th>Birthday</th>
-        <th>Name</th>
-    </tr>
-
-    @foreach (var teacher in @Model.Teachers)
-    {
-        <tr>
-            <td>@teacher.TeacherId</td>
-            <td>@teacher.Birthday</td>
-            <td>@teacher.Name</td>
-        </tr>
-    }
-</table>
-
-<br/>
-
-<h5>List of Students</h5>  
-
+<h5>List of Students</h5>
 <table>
     <tr>
         <th>Au-id</th>
@@ -72,6 +49,28 @@
             <td>@student.EnrolledDate</td>
             <td>@student.GraduationDate</td>
             <td>@student.GroupId</td>
+        </tr>
+    }
+</table>
+
+<br/>
+
+
+
+<h5>List of Teachers</h5>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Birthday</th>
+        <th>Name</th>
+    </tr>
+
+    @foreach (var teacher in @Model.Teachers)
+    {
+        <tr>
+            <td>@teacher.TeacherId</td>
+            <td>@teacher.Birthday</td>
+            <td>@teacher.Name</td>
         </tr>
     }
 </table>
