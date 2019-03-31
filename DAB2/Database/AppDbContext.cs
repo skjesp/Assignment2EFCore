@@ -20,6 +20,7 @@ namespace DAB2.Database
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //For Course and Teacher
             modelBuilder.Entity<CourseTeacher>()
                 .HasKey(ct => new {ct.CourseId, ct.TeacherId});
 
@@ -32,6 +33,20 @@ namespace DAB2.Database
                 .HasOne(t => t.Teacher)
                 .WithMany(ct => ct.CourseTeacher)
                 .HasForeignKey(ct => ct.TeacherId);
+
+            //For Course and Assignment 
+            modelBuilder.Entity<CourseAssignment>()
+                .HasKey(ca => new {ca.CourseId, ca.AssignmentId});
+
+            modelBuilder.Entity<CourseAssignment>()
+                .HasOne(c => c.Course)
+                .WithMany(ca => ca.CourseAssignment)
+                .HasForeignKey(c => c.CourseId);
+
+            modelBuilder.Entity<CourseAssignment>()
+                .HasOne(a => a.Assignment)
+                .WithMany(ca => ca.CourseAssignment)
+                .HasForeignKey(a => a.AssignmentId);
         }
     }
 }

@@ -17,5 +17,7 @@ namespace DAB2.Database
         public string CalendarId { get; set; }
 
         public List<CourseTeacher> CourseTeacher { get; set; }
+
+        public List<CourseAssignment> CourseAssignment { get; set; }
     }
 }
