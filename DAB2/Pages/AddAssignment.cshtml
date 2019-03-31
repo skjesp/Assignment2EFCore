@@ -1,0 +1,44 @@
+@page
+@model AddAssignmentModel
+@{
+    ViewData["Title"] = "Add Assignment";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Use this page to add new assignments.</p>
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <h5>Create a new assignments.</h5>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Assignment.AssignmentId"></label>
+                <input asp-for="Assignment.AssignmentId" class="form-control" placeholder="1"/>
+                <span asp-validation-for="Assignment.AssignmentId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Assignment.Name"></label>
+                <input asp-for="Assignment.Name" class="form-control" placeholder="I4-DAB"/>
+                <span asp-validation-for="Assignment.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Assignment.DueDate"></label>
+                <input asp-for="Assignment.DueDate" class="form-control" placeholder="1"/>
+                <span asp-validation-for="Assignment.DueDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Assignment.GroupSize"></label>
+                <input asp-for="Assignment.GroupSize" class="form-control" placeholder="1"/>
+                <span asp-validation-for="Assignment.GroupSize" class="text-danger"></span>
+            </div>
+            <hr />
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

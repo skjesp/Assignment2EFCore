@@ -30,3 +30,4 @@
 /Users/danielappelgren/Documents/GitHub/Assignment2EFCore/DAB2/obj/Debug/netcoreapp2.2/DAB2.csproj.CopyComplete
 /Users/danielappelgren/Documents/GitHub/Assignment2EFCore/DAB2/obj/Debug/netcoreapp2.2/Razor/Pages/AddStudent.g.cshtml.cs
 /Users/danielappelgren/Documents/GitHub/Assignment2EFCore/DAB2/obj/Debug/netcoreapp2.2/Razor/Pages/AddCourse.g.cshtml.cs
+/Users/danielappelgren/Documents/GitHub/Assignment2EFCore/DAB2/obj/Debug/netcoreapp2.2/Razor/Pages/AddAssignment.g.cshtml.cs

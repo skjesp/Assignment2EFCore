@@ -9,7 +9,7 @@
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 
-<h5>List of Courses</h5>
+<h5>Courses</h5>
 <table>
     <tr>
         <th>Id</th>
@@ -31,7 +31,7 @@
 
 <br/>
 
-<h5>List of Students</h5>
+<h5>Students</h5>
 <table>
     <tr>
         <th>Au-id</th>
@@ -55,9 +55,7 @@
 
 <br/>
 
-
-
-<h5>List of Teachers</h5>
+<h5>Teachers</h5>
 <table>
     <tr>
         <th>Id</th>
@@ -71,6 +69,28 @@
             <td>@teacher.TeacherId</td>
             <td>@teacher.Birthday</td>
             <td>@teacher.Name</td>
+        </tr>
+    }
+</table>
+
+<br/>
+
+<h5>Assignments</h5>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>DueDate</th>
+        <th>GroupSize</th>
+    </tr>
+
+    @foreach (var assignment in @Model.Assignments)
+    {
+        <tr>
+            <td>@assignment.AssignmentId</td>
+            <td>@assignment.Name</td>
+            <td>@assignment.DueDate</td>
+            <td>@assignment.GroupSize</td>
         </tr>
     }
 </table>
