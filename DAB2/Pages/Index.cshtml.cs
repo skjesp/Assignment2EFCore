@@ -24,6 +24,8 @@ namespace DAB2.Pages
 
         public List<Student> Students { get; set; }
 
+        public List<CourseStudent> CourseStudents { get; set; }
+
         public async Task OnGetAsync()
         {
             //Load list of Courses
@@ -34,6 +36,9 @@ namespace DAB2.Pages
 
             //Load list of Students
             Students = await _db.Students.AsNoTracking().ToListAsync();
+
+            //Load list of CourseStudents
+            CourseStudents = await _db.CourseStudents.AsNoTracking().ToListAsync();
         }
 
         public async Task OnPostAsync()

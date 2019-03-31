@@ -29,7 +29,7 @@
     }
 </table>
 
-<br/>
+<br />
 
 <h5>List of Students</h5>
 <table>
@@ -53,7 +53,7 @@
     }
 </table>
 
-<br/>
+<br />
 
 
 
@@ -75,5 +75,19 @@
     }
 </table>
 
+<h5>List of Enrolled Students</h5>
+<table>
+    <tr>
+        <th>Student auid</th>
+        <th>Course-id</th>
+    </tr>
 
+    @foreach (var CourseStudent in @Model.CourseStudents)
+    {
+        <tr>
+            <td>@CourseStudent.StudentID</td>
+            <td>@CourseStudent.CourseID</td>
+        </tr>
+    }
+</table>
 
