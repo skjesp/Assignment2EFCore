@@ -14,6 +14,7 @@ namespace DAB2.Database
 
         public DbSet<Student> Students { get; set; }
 
+<<<<<<< HEAD:DAB2/Database/AppDbContext.cs
         public DbSet<Assignment> Assignments { get; set; }
 =======
         public DbSet<CourseStudent> CourseStudents { get; set; }
