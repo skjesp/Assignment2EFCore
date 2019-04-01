@@ -31,6 +31,7 @@
 /Users/danielappelgren/Documents/GitHub/Assignment2EFCore/DAB2/obj/Debug/netcoreapp2.2/Razor/Pages/AddStudent.g.cshtml.cs
 /Users/danielappelgren/Documents/GitHub/Assignment2EFCore/DAB2/obj/Debug/netcoreapp2.2/Razor/Pages/AddCourse.g.cshtml.cs
 <<<<<<< HEAD
+<<<<<<< HEAD
 /Users/danielappelgren/Documents/GitHub/Assignment2EFCore/DAB2/obj/Debug/netcoreapp2.2/Razor/Pages/AddAssignment.g.cshtml.cs
 =======
 C:\Users\Sebas\Documents\GitHub\Assignment2EFCore\DAB2\bin\Debug\netcoreapp2.2\DAB2.deps.json
@@ -67,3 +68,5 @@ C:\Users\Sebas\Documents\GitHub\Assignment2EFCore\DAB2\obj\Debug\netcoreapp2.2\D
 C:\Users\Sebas\Documents\GitHub\Assignment2EFCore\DAB2\obj\Debug\netcoreapp2.2\DAB2.csproj.CopyComplete
 C:\Users\Sebas\Documents\GitHub\Assignment2EFCore\DAB2\obj\Debug\netcoreapp2.2\Razor\Pages\EnrollStudentInCourse.g.cshtml.cs
 >>>>>>> feature/enroll-student-in-course
+=======
+>>>>>>> parent of bdd8bf6... Feature/add-assignment completed

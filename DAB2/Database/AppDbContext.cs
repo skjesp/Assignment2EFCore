@@ -14,12 +14,15 @@ namespace DAB2.Database
 
         public DbSet<Student> Students { get; set; }
 
+<<<<<<< HEAD
 <<<<<<< HEAD:DAB2/Database/AppDbContext.cs
         public DbSet<Assignment> Assignments { get; set; }
 =======
         public DbSet<CourseStudent> CourseStudents { get; set; }
 >>>>>>> feature/enroll-student-in-course:DAB2/Database/AppDbContext.1.cs
 
+=======
+>>>>>>> parent of bdd8bf6... Feature/add-assignment completed
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite("Filename=Database.db");

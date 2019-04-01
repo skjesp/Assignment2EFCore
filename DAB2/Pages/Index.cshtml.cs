@@ -25,11 +25,14 @@ namespace DAB2.Pages
         public List<Student> Students { get; set; }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         public List<Assignment> Assignments { get; set; }
 =======
         public List<CourseStudent> CourseStudents { get; set; }
 >>>>>>> feature/enroll-student-in-course
 
+=======
+>>>>>>> parent of bdd8bf6... Feature/add-assignment completed
         public async Task OnGetAsync()
         {
             //Load list of Courses
@@ -40,6 +43,7 @@ namespace DAB2.Pages
 
             //Load list of Students
             Students = await _db.Students.AsNoTracking().ToListAsync();
+<<<<<<< HEAD
 
 <<<<<<< HEAD
             //Load list of Assignments
@@ -48,6 +52,8 @@ namespace DAB2.Pages
             //Load list of CourseStudents
             CourseStudents = await _db.CourseStudents.AsNoTracking().ToListAsync();
 >>>>>>> feature/enroll-student-in-course
+=======
+>>>>>>> parent of bdd8bf6... Feature/add-assignment completed
         }
 
         public async Task OnPostAsync()
