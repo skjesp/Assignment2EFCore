@@ -13,6 +13,7 @@ namespace DAB2.Database
 
         public DbSet<Student> Students { get; set; }
 
+<<<<<<< HEAD
         public DbSet<Assignment> Assignments { get; set; }
 
         public DbSet<CourseStudent> CourseStudents { get; set; }
@@ -21,6 +22,8 @@ namespace DAB2.Database
 
         public DbSet<GroupAssignment> GroupAssignments { get; set; }
 
+=======
+>>>>>>> parent of bdd8bf6... Feature/add-assignment completed
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite("Filename=Database.db");

@@ -31,6 +31,7 @@
 /Users/danielappelgren/Documents/GitHub/Assignment2EFCore/DAB2/obj/Debug/netcoreapp2.2/Razor/Pages/AddStudent.g.cshtml.cs
 /Users/danielappelgren/Documents/GitHub/Assignment2EFCore/DAB2/obj/Debug/netcoreapp2.2/Razor/Pages/AddCourse.g.cshtml.cs
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 C:/Users/Sebas/Documents/GitHub/Assignment2EFCore/DAB2/bin/Debug/netcoreapp2.2/DAB2.deps.json
 C:/Users/Sebas/Documents/GitHub/Assignment2EFCore/DAB2/bin/Debug/netcoreapp2.2/DAB2.runtimeconfig.json
@@ -71,3 +72,5 @@ C:/Users/Sebas/Documents/GitHub/Assignment2EFCore/DAB2/obj/Debug/netcoreapp2.2/R
 /Users/danielappelgren/Documents/GitHub/Assignment2EFCore/DAB2/obj/Debug/netcoreapp2.2/Razor/Pages/AddGroup.g.cshtml.cs
 /Users/danielappelgren/Documents/GitHub/Assignment2EFCore/DAB2/obj/Debug/netcoreapp2.2/Razor/Pages/AddTeacher.g.cshtml.cs
 /Users/danielappelgren/Documents/GitHub/Assignment2EFCore/DAB2/obj/Debug/netcoreapp2.2/Razor/Pages/GradeAssignment.g.cshtml.cs
+=======
+>>>>>>> parent of bdd8bf6... Feature/add-assignment completed
