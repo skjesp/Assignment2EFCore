@@ -33,7 +33,7 @@ namespace DAB2
             });
 
             //Add AppDbContext as a service for Products-database.
-            services.AddEntityFrameworkSqlite().AddDbContext<AppDbContext>();
+            services.AddEntityFrameworkSqlServer().AddDbContext<AppDbContext>();
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

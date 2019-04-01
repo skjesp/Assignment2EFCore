@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Sqlite;
+using Microsoft.EntityFrameworkCore.SqlServer;
 
 namespace DAB2.Database
 {
@@ -14,10 +15,15 @@ namespace DAB2.Database
         public DbSet<Student> Students { get; set; }
 
         public DbSet<Assignment> Assignments { get; set; }
+=======
+        public DbSet<CourseStudent> CourseStudents { get; set; }
+>>>>>>> feature/enroll-student-in-course:DAB2/Database/AppDbContext.1.cs
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite("Filename=Database.db");
+            optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=DAB_AFL2;Integrated Security=True");
+            //optionsBuilder.UseSqlite("Data Source=Database.db");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -36,6 +42,7 @@ namespace DAB2.Database
                 .WithMany(ct => ct.CourseTeacher)
                 .HasForeignKey(ct => ct.TeacherId);
 
+<<<<<<< HEAD:DAB2/Database/AppDbContext.cs
             //For Course and Assignment 
             modelBuilder.Entity<CourseAssignment>()
                 .HasKey(ca => new {ca.CourseId, ca.AssignmentId});
@@ -49,6 +56,18 @@ namespace DAB2.Database
                 .HasOne(a => a.Assignment)
                 .WithMany(ca => ca.CourseAssignment)
                 .HasForeignKey(a => a.AssignmentId);
+=======
+            // Student - Course (many to many relationship)
+            modelBuilder.Entity<CourseStudent>().HasKey(p => new {p.StudentID, p.CourseID});
+            modelBuilder.Entity<CourseStudent>()
+                .HasOne(cs => cs.Course)
+                .WithMany(c => c.CourseStudents)
+                .HasForeignKey(cs => cs.CourseID);
+            modelBuilder.Entity<CourseStudent>()
+                .HasOne(cs => cs.Student)
+                .WithMany(s => s.CourseStudents)
+                .HasForeignKey(cs => cs.StudentID);
+>>>>>>> feature/enroll-student-in-course:DAB2/Database/AppDbContext.1.cs
         }
     }
 }

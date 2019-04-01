@@ -24,7 +24,11 @@ namespace DAB2.Pages
 
         public List<Student> Students { get; set; }
 
+<<<<<<< HEAD
         public List<Assignment> Assignments { get; set; }
+=======
+        public List<CourseStudent> CourseStudents { get; set; }
+>>>>>>> feature/enroll-student-in-course
 
         public async Task OnGetAsync()
         {
@@ -37,8 +41,13 @@ namespace DAB2.Pages
             //Load list of Students
             Students = await _db.Students.AsNoTracking().ToListAsync();
 
+<<<<<<< HEAD
             //Load list of Assignments
             Assignments = await _db.Assignments.AsNoTracking().ToListAsync();
+=======
+            //Load list of CourseStudents
+            CourseStudents = await _db.CourseStudents.AsNoTracking().ToListAsync();
+>>>>>>> feature/enroll-student-in-course
         }
 
         public async Task OnPostAsync()

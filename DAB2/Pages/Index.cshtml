@@ -30,6 +30,7 @@
 </table>
 
 <br/>
+<br />
 
 <h5>Students</h5>
 <table>
@@ -54,6 +55,7 @@
 </table>
 
 <br/>
+<br />
 
 <h5>Teachers</h5>
 <table>
@@ -73,6 +75,7 @@
     }
 </table>
 
+<<<<<<< HEAD
 <br/>
 
 <h5>Assignments</h5>
@@ -95,5 +98,21 @@
     }
 </table>
 
+=======
+<h5>List of Enrolled Students</h5>
+<table>
+    <tr>
+        <th>Student auid</th>
+        <th>Course-id</th>
+    </tr>
+>>>>>>> feature/enroll-student-in-course
 
+    @foreach (var CourseStudent in @Model.CourseStudents)
+    {
+        <tr>
+            <td>@CourseStudent.StudentID</td>
+            <td>@CourseStudent.CourseID</td>
+        </tr>
+    }
+</table>
 
