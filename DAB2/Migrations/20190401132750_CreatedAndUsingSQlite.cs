@@ -2,7 +2,7 @@
 
 namespace DAB2.Migrations
 {
-    public partial class Course : Migration
+    public partial class CreatedAndUsingSQlite : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

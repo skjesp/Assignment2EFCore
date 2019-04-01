@@ -34,7 +34,7 @@ namespace DAB2.Pages
                 return Page();
             }
 
-            //Add object of Student to database & save changes.
+            //Add object to database & save changes.
             _db.Courses.Add(Course);
             await _db.SaveChangesAsync();
 
