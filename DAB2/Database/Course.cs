@@ -17,11 +17,9 @@ namespace DAB2.Database
         public string CalendarId { get; set; }
 
         public List<CourseTeacher> CourseTeacher { get; set; }
-<<<<<<< HEAD
 
         public List<CourseAssignment> CourseAssignment { get; set; }
-=======
+        
         public List<CourseStudent> CourseStudents { get; set; }
->>>>>>> feature/enroll-student-in-course
     }
 }

@@ -8,14 +8,32 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAB2.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20190330151900_Course")]
-    partial class Course
+    [Migration("20190401140418_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.2-servicing-10034");
+
+            modelBuilder.Entity("DAB2.Database.Assignment", b =>
+                {
+                    b.Property<int>("AssignmentId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("DueDate")
+                        .IsRequired();
+
+                    b.Property<int>("GroupSize");
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.HasKey("AssignmentId");
+
+                    b.ToTable("Assignments");
+                });
 
             modelBuilder.Entity("DAB2.Database.Course", b =>
                 {
@@ -32,6 +50,38 @@ namespace DAB2.Migrations
                     b.HasKey("CourseId");
 
                     b.ToTable("Courses");
+                });
+
+            modelBuilder.Entity("DAB2.Database.CourseAssignment", b =>
+                {
+                    b.Property<int>("CourseId");
+
+                    b.Property<int>("AssignmentId");
+
+                    b.Property<bool>("Active");
+
+                    b.HasKey("CourseId", "AssignmentId");
+
+                    b.HasIndex("AssignmentId");
+
+                    b.ToTable("CourseAssignment");
+                });
+
+            modelBuilder.Entity("DAB2.Database.CourseStudent", b =>
+                {
+                    b.Property<int>("StudentID");
+
+                    b.Property<int>("CourseID");
+
+                    b.Property<bool>("IsCourseActive");
+
+                    b.Property<bool>("IsCoursePassed");
+
+                    b.HasKey("StudentID", "CourseID");
+
+                    b.HasIndex("CourseID");
+
+                    b.ToTable("CourseStudents");
                 });
 
             modelBuilder.Entity("DAB2.Database.CourseTeacher", b =>
@@ -84,6 +134,32 @@ namespace DAB2.Migrations
                     b.HasKey("TeacherId");
 
                     b.ToTable("Teachers");
+                });
+
+            modelBuilder.Entity("DAB2.Database.CourseAssignment", b =>
+                {
+                    b.HasOne("DAB2.Database.Assignment", "Assignment")
+                        .WithMany("CourseAssignment")
+                        .HasForeignKey("AssignmentId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("DAB2.Database.Course", "Course")
+                        .WithMany("CourseAssignment")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("DAB2.Database.CourseStudent", b =>
+                {
+                    b.HasOne("DAB2.Database.Course", "Course")
+                        .WithMany("CourseStudents")
+                        .HasForeignKey("CourseID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("DAB2.Database.Student", "Student")
+                        .WithMany("CourseStudents")
+                        .HasForeignKey("StudentID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DAB2.Database.CourseTeacher", b =>
