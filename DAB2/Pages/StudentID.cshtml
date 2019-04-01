@@ -1,0 +1,50 @@
+﻿@page
+@model DAB2.Pages.StudentIDModel
+@{
+    ViewData["Title"] = "StudentID";
+    Layout = "~/Pages/_ViewImports.cshtml";
+}
+
+<h1>@ViewData["Titel"]</h1>
+
+<p>Use this page to add new assignments.</p>
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <h5>Student ID.</h5>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="input.StudentID"></label>
+                <input asp-for="input.StudentID" class="form-control" placeholder="1"/>
+                <span asp-validation-for="input.StudentID" class="text-danger"></span>
+            </div>
+            <hr />
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+    </div>
+</div>
+
+<table>
+    <tr>
+        <th>CourseId</th>
+        <th>Course</th>
+        <th>Status</th>
+        <th>Grade</th>
+    </tr>
+
+    @foreach (var course in @Model.enrolment)
+    {
+        <tr>
+            <td>@course.CourseId</td>
+            <td>@course.Couse/td>
+            <td>@course.Status</td>
+            <td>@course.Grade</td>
+        </tr>
+    }
+</table>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
