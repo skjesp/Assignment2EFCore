@@ -7,7 +7,6 @@ namespace DAB2.Database
 {
     public class CourseStudent
     {
-        public string AUID { get; set; }
         public int CourseID { get; set; }
         public Course Course { get; set; }
         public int StudentID { get; set; }

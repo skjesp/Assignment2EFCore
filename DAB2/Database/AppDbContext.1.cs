@@ -17,7 +17,7 @@ namespace DAB2.Database
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Filename=Database.db");
+            optionsBuilder.UseSqlServer("Filename=Database.db");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
