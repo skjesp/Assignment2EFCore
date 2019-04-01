@@ -9,6 +9,8 @@
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 
+<h5>Search </h5>
+
 <h5>List of Courses</h5>
 <table>
     <tr>
@@ -139,6 +141,8 @@
     <tr>
         <th>StudentId</th>
         <th>CourseId</th>
+        <th>Coursed passed</th>
+        <th>Course active</th>
     </tr>
 
     @foreach (var CourseStudent in @Model.CourseStudents)
@@ -146,6 +150,8 @@
         <tr>
             <td>@CourseStudent.StudentID</td>
             <td>@CourseStudent.CourseID</td>
+            <td>@CourseStudent.IsCoursePassed</td>
+            <td>@CourseStudent.IsCourseActive</td>
         </tr>
     }
 </table>
