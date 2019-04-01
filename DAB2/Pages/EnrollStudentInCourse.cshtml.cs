@@ -35,9 +35,18 @@ namespace DAB2.Pages
             }
 
             //Add object of Student to database & save changes.
+
+            try
+            {
+                _db.Add(CourseStudent);
+                await _db.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                return RedirectToPage("/Index");
+                throw;
+            }
             
-            _db.Add(CourseStudent);
-            await _db.SaveChangesAsync();
             
             //Redirect to /Index page.
             return RedirectToPage("/Index");
