@@ -17,7 +17,8 @@ namespace DAB2.Database
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Filename=Database.db");
+            optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=DAB_AFL2;Integrated Security=True");
+            //optionsBuilder.UseSqlite("Data Source=Database.db");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
