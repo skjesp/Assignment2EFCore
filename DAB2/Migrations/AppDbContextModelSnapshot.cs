@@ -97,6 +97,31 @@ namespace DAB2.Migrations
                     b.ToTable("CourseTeacher");
                 });
 
+            modelBuilder.Entity("DAB2.Database.Group", b =>
+                {
+                    b.Property<int>("GroupId")
+                        .ValueGeneratedOnAdd();
+
+                    b.HasKey("GroupId");
+
+                    b.ToTable("Groups");
+                });
+
+            modelBuilder.Entity("DAB2.Database.GroupAssignment", b =>
+                {
+                    b.Property<int>("GroupId");
+
+                    b.Property<int>("AssignmentId");
+
+                    b.Property<string>("Grade");
+
+                    b.HasKey("GroupId", "AssignmentId");
+
+                    b.HasIndex("AssignmentId");
+
+                    b.ToTable("GroupAssignments");
+                });
+
             modelBuilder.Entity("DAB2.Database.Student", b =>
                 {
                     b.Property<int>("StudentId")
@@ -116,6 +141,19 @@ namespace DAB2.Migrations
                     b.HasKey("StudentId");
 
                     b.ToTable("Students");
+                });
+
+            modelBuilder.Entity("DAB2.Database.StudentGroup", b =>
+                {
+                    b.Property<int>("StudentId");
+
+                    b.Property<int>("GroupId");
+
+                    b.HasKey("StudentId", "GroupId");
+
+                    b.HasIndex("GroupId");
+
+                    b.ToTable("StudentGroup");
                 });
 
             modelBuilder.Entity("DAB2.Database.Teacher", b =>
@@ -170,6 +208,32 @@ namespace DAB2.Migrations
                     b.HasOne("DAB2.Database.Teacher", "Teacher")
                         .WithMany("CourseTeacher")
                         .HasForeignKey("TeacherId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("DAB2.Database.GroupAssignment", b =>
+                {
+                    b.HasOne("DAB2.Database.Assignment", "Assignment")
+                        .WithMany("GroupAssignment")
+                        .HasForeignKey("AssignmentId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("DAB2.Database.Group", "Group")
+                        .WithMany("GroupAssignment")
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("DAB2.Database.StudentGroup", b =>
+                {
+                    b.HasOne("DAB2.Database.Group", "Group")
+                        .WithMany("StudentGroup")
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("DAB2.Database.Student", "Student")
+                        .WithMany("StudentGroup")
+                        .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

@@ -68,3 +68,6 @@ C:/Users/Sebas/Documents/GitHub/Assignment2EFCore/DAB2/obj/Debug/netcoreapp2.2/R
 >>>>>>> feature/enroll-student-in-course
 >>>>>>> parent of bdd8bf6... Feature/add-assignment completed
 /Users/danielappelgren/Documents/GitHub/Assignment2EFCore/DAB2/obj/Debug/netcoreapp2.2/Razor/Pages/EnrollStudentInCourse.g.cshtml.cs
+/Users/danielappelgren/Documents/GitHub/Assignment2EFCore/DAB2/obj/Debug/netcoreapp2.2/Razor/Pages/AddGroup.g.cshtml.cs
+/Users/danielappelgren/Documents/GitHub/Assignment2EFCore/DAB2/obj/Debug/netcoreapp2.2/Razor/Pages/AddTeacher.g.cshtml.cs
+/Users/danielappelgren/Documents/GitHub/Assignment2EFCore/DAB2/obj/Debug/netcoreapp2.2/Razor/Pages/GradeAssignment.g.cshtml.cs

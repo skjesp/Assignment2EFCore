@@ -55,9 +55,6 @@
 </table>
 
 <br/>
-<br />
-
-
 
 <h5>List of Teachers</h5>
 <table>
@@ -101,12 +98,40 @@
 
 <br/>
 
-<h5>List of Enrolled Students</h5>
+<h5>Groups</h5>
 <table>
     <tr>
-        <th>Student auid</th>
-        <th>Course-id</th>
+        <th>GroupId</th>
     </tr>
+
+    @foreach (var group in @Model.Groups)
+    {
+        <tr>
+            <td>@group.GroupId</td>
+        </tr>
+    }
+</table>
+
+<br/>
+
+<h5>Graded assignments</h5>
+<table>
+    <tr>
+        <th>GroupId</th>
+        <th>AssignmentId</th>
+        <th>Grade</th>
+    </tr>
+
+    @foreach (var groupAssignment in @Model.GroupAssignments)
+    {
+        <tr>
+            <td>@groupAssignment.GroupId</td>
+            <td>@groupAssignment.AssignmentId</td>
+            <td>@groupAssignment.Grade</td>
+        </tr>
+    }
+</table>
+
 
     @foreach (var CourseStudent in @Model.CourseStudents)
     {
@@ -116,4 +141,6 @@
         </tr>
     }
 </table>
+
+<br/>
 

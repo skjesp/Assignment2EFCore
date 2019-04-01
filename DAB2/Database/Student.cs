@@ -19,6 +19,9 @@ namespace DAB2.Database
         public string GraduationDate { get; set; }
 
         public int GroupId { get; set; }
+        
         public List<CourseStudent> CourseStudents { get; set; }
+
+        public List<StudentGroup> StudentGroup { get; set; }
     }
 }

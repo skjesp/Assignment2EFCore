@@ -4,13 +4,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DAB2.Database
 {
-    public class CourseAssignment
+    public class GroupAssignment
     {
-        public int CourseId { get; set; }
-        public Course Course { get; set; }
+        public int GroupId { get; set; }
+        public Group Group { get; set; }
         public int AssignmentId { get; set; }
         public Assignment Assignment { get; set; }
-
-        public bool Active { get; set; }
+        
+        public string Grade { get; set; }
     }
 }
