@@ -38,7 +38,7 @@ namespace DAB2.Pages
             
             _db.Add(CourseStudent);
             await _db.SaveChangesAsync();
-
+            
             //Redirect to /Index page.
             return RedirectToPage("/Index");
         }
