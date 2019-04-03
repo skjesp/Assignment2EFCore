@@ -71,3 +71,4 @@ C:/Users/Sebas/Documents/GitHub/Assignment2EFCore/DAB2/obj/Debug/netcoreapp2.2/R
 /Users/danielappelgren/Documents/GitHub/Assignment2EFCore/DAB2/obj/Debug/netcoreapp2.2/Razor/Pages/AddGroup.g.cshtml.cs
 /Users/danielappelgren/Documents/GitHub/Assignment2EFCore/DAB2/obj/Debug/netcoreapp2.2/Razor/Pages/AddTeacher.g.cshtml.cs
 /Users/danielappelgren/Documents/GitHub/Assignment2EFCore/DAB2/obj/Debug/netcoreapp2.2/Razor/Pages/GradeAssignment.g.cshtml.cs
+/Users/danielappelgren/Documents/GitHub/Assignment2EFCore/DAB2/obj/Debug/netcoreapp2.2/Razor/Pages/AddAssignment.g.cshtml.cs

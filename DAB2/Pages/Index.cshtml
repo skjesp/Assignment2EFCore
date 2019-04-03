@@ -5,11 +5,40 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">DAB2-Exercise EF core</h1>
 </div>
 
-<h5>Search </h5>
+<h5>Search</h5>
+<form method="post">
+    <div id="searchField" class="input-group">
+        <input type="text" class="form-control" name="studentId"/>
+        <span class="input-group-addon"></span>
+        <button type="submit" class="btn btn-primary" asp-page-handler="SearchStudent" 
+            asp-route-id="studentId" class="form-control">Search</button>
+    </div>
+</form>
+<br/>
+
+<h5>List of studentcourse</h5>
+<table>
+    <tr>
+        <th>StudentId</th>
+        <th>CourseId</th>
+        <th>IsCourseActive</th>
+    </tr>
+
+    @foreach (var studentcourse in @Model.CourseStudents)
+    {
+        <tr>
+            <td>@studentcourse.StudentID</td>
+            <td>@studentcourse.CourseID</td>
+            <td>@studentcourse.IsCourseActive</td>
+        </tr>
+    }
+</table>
+
+<br/>
+
 
 <h5>List of Courses</h5>
 <table>
@@ -61,7 +90,7 @@
 <h5>List of Teachers</h5>
 <table>
     <tr>
-        <th>Id</th>
+        <th>TeacherId</th>
         <th>Birthday</th>
         <th>Name</th>
     </tr>
@@ -81,7 +110,7 @@
 <h5>Assignments</h5>
 <table>
     <tr>
-        <th>Id</th>
+        <th>AssignmentId</th>
         <th>Name</th>
         <th>DueDate</th>
         <th>GroupSize</th>
