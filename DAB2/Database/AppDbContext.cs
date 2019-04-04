@@ -51,6 +51,17 @@ namespace DAB2.Database
                 .HasOne(a => a.Assignment)
                 .WithMany(ca => ca.CourseAssignment)
                 .HasForeignKey(a => a.AssignmentId);
+
+            modelBuilder.Entity<CourseStudent>().HasKey(p => new { p.StudentID, p.CourseID });
+            modelBuilder.Entity<CourseStudent>()
+                .HasOne(cs => cs.Course)
+                .WithMany(c => c.CourseStudents)
+                .HasForeignKey(cs => cs.CourseID);
+            modelBuilder.Entity<CourseStudent>()
+                .HasOne(cs => cs.Student)
+                .WithMany(s => s.CourseStudents)
+                .HasForeignKey(cs => cs.StudentID);
         }
+    }
     }
 }
