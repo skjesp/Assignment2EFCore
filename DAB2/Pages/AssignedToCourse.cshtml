@@ -18,7 +18,7 @@
                 <span asp-validation-for="input.CourseID" class="text-danger"></span>
             </div>
             <hr />
-            <button type="submit" class="btn btn-primary">Create</button>
+            <button type="submit" class="btn btn-primary">Find</button>
         </form>
     </div>
 </div>
@@ -35,8 +35,23 @@
     {
         <tr>
             <td>@course.TeacherId</td>
-            <td>@course.Teacher</td>
+            <td>@course.Teacher.Name</td>
             <td>@course.IsAssistant</td>
+        </tr>
+    }
+</table>
+<h5>Teachers in course</h5>
+<table>
+    <tr>
+        <th>StudentId</th>
+        <th>Student</th>
+    </tr>
+
+    @foreach (var course in @Model.Students)
+    {
+        <tr>
+            <td>@course.StudentID</td>
+            <td>@course.Student.Name</td>
         </tr>
     }
 </table>

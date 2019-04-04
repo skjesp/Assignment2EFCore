@@ -30,7 +30,7 @@ namespace DAB2.Migrations
 
                     b.HasKey("AssignmentId");
 
-                    b.ToTable("Assignment");
+                    b.ToTable("Assignments");
                 });
 
             modelBuilder.Entity("DAB2.Database.Course", b =>
@@ -65,6 +65,23 @@ namespace DAB2.Migrations
                     b.ToTable("CourseAssignment");
                 });
 
+            modelBuilder.Entity("DAB2.Database.CourseStudent", b =>
+                {
+                    b.Property<int>("StudentID");
+
+                    b.Property<int>("CourseID");
+
+                    b.Property<bool>("IsCourseActive");
+
+                    b.Property<bool>("IsCoursePassed");
+
+                    b.HasKey("StudentID", "CourseID");
+
+                    b.HasIndex("CourseID");
+
+                    b.ToTable("CourseStudents");
+                });
+
             modelBuilder.Entity("DAB2.Database.CourseTeacher", b =>
                 {
                     b.Property<int>("CourseId");
@@ -77,7 +94,7 @@ namespace DAB2.Migrations
 
                     b.HasIndex("TeacherId");
 
-                    b.ToTable("CourseTeacher");
+                    b.ToTable("CourseTeachers");
                 });
 
             modelBuilder.Entity("DAB2.Database.Student", b =>
@@ -127,6 +144,19 @@ namespace DAB2.Migrations
                     b.HasOne("DAB2.Database.Course", "Course")
                         .WithMany("CourseAssignment")
                         .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("DAB2.Database.CourseStudent", b =>
+                {
+                    b.HasOne("DAB2.Database.Course", "Course")
+                        .WithMany("CourseStudents")
+                        .HasForeignKey("CourseID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("DAB2.Database.Student", "Student")
+                        .WithMany("CourseStudents")
+                        .HasForeignKey("StudentID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

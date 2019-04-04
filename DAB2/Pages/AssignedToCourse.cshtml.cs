@@ -18,6 +18,8 @@ namespace DAB2.Pages
         public AssignedToCourseModel(AppDbContext db)
         {
             _db = db;
+            Teachers=new List<CourseTeacher>();
+            Students=new List<CourseStudent>();
         }
 
         [BindProperty]
@@ -36,7 +38,7 @@ namespace DAB2.Pages
 
         }
 
-        public List<Student> Students { get; set; }
+        public List<CourseStudent> Students { get; set; }
         public List<CourseTeacher> Teachers { get; set; }
 
 
@@ -49,8 +51,16 @@ namespace DAB2.Pages
                     Teachers.Add(course);
                 }
             }
+
+            foreach (var course in _db.CourseStudents.ToList())
+            {
+                if (course.CourseID == input.CourseID)
+                {
+                    Students.Add(course);
+                }
+            }
             //Redirect to /Index page.
-            return RedirectToPage("/Index");
+            return RedirectToPage("/AssignedToCourse");
         }
     }
 }
