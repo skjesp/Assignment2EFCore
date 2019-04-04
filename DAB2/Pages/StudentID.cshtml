@@ -34,13 +34,13 @@
         <th>Grade</th>
     </tr>
 
-    @foreach (var course in @Model.enrolment)
+    @foreach (var course in @Model.enrolments)
     {
         <tr>
-            <td>@course.CourseId</td>
-            <td>@course.Couse/td>
-            <td>@course.Status</td>
-            <td>@course.Grade</td>
+            <td>@course.CourseID</td>
+            <td>@course.Course</td>
+            <td>@course.IsCourseActive</td>
+            <td>@course.IsCoursePassed</td>
         </tr>
     }
 </table>

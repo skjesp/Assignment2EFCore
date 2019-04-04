@@ -28,13 +28,13 @@ namespace DAB2.Pages
             public int StudentID{get; set;}
         }
 
-        public List<enrolment> enrolments { get; set; }
+        public List<CourseStudent> enrolments { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            foreach (var ting in _db.enrolment.toList())
+            foreach (var ting in _db.CourseStudents.ToList())
             {
-                if (ting.studentID == input.StudentID)
+                if (ting.StudentID == input.StudentID)
                 {
                     enrolments.Add(ting);
                 }
