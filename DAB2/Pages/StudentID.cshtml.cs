@@ -17,6 +17,7 @@ namespace DAB2.Pages
         public StudentIDModel(AppDbContext db)
         {
             _db = db;
+            enrolments = new List<CourseStudent>();
         }
 
         [BindProperty] public inputModel input { get; set; }
