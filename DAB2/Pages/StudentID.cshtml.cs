@@ -28,25 +28,25 @@ namespace DAB2.Pages
             public int StudentID{get; set;}
         }
 
-        public List<enrolment> enrolments { get; set; }
+        //public List<enrolment> enrolments { get; set; }
 
-        public async Task<IActionResult> OnPostAsync()
-        {
-            foreach (var ting in _db.enrolment.toList())
-            {
-                if(ting.studentID == input.StudentID)
-                {
-                    enrolments.Add(ting);
-                }
-            }
-            //Redirect to /Index page.
-            return RedirectToPage("/Index");
-        }
+        //public async Task<IActionResult> OnPostAsync()
+        //{
+        //    foreach (var ting in _db.enrolment.toList())
+        //    {
+        //        if(ting.studentID == input.StudentID)
+        //        {
+        //            enrolments.Add(ting);
+        //        }
+        //    }
+        //    //Redirect to /Index page.
+        //    return RedirectToPage("/Index");
+        //}
 
-        public void OnGet()
-        {
+        //public void OnGet()
+        //{
 
 
-        }
+        //}
     }
 }
