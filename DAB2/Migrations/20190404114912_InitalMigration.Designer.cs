@@ -2,25 +2,29 @@
 using DAB2.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DAB2.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20190401143107_InitialMigrationFix")]
-    partial class InitialMigrationFix
+    [Migration("20190404114912_InitalMigration")]
+    partial class InitalMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.2-servicing-10034");
+                .HasAnnotation("ProductVersion", "2.2.2-servicing-10034")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128)
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("DAB2.Database.Assignment", b =>
                 {
-                    b.Property<int>("AssignmentId")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("DueDate")
                         .IsRequired();
@@ -30,24 +34,27 @@ namespace DAB2.Migrations
                     b.Property<string>("Name")
                         .IsRequired();
 
-                    b.HasKey("AssignmentId");
+                    b.HasKey("Id");
 
                     b.ToTable("Assignments");
                 });
 
             modelBuilder.Entity("DAB2.Database.Course", b =>
                 {
-                    b.Property<int>("CourseId")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CalendarId");
 
                     b.Property<string>("ContentId");
 
+                    b.Property<int>("CourseNr");
+
                     b.Property<string>("Name")
                         .IsRequired();
 
-                    b.HasKey("CourseId");
+                    b.HasKey("Id");
 
                     b.ToTable("Courses");
                 });
@@ -101,10 +108,13 @@ namespace DAB2.Migrations
 
             modelBuilder.Entity("DAB2.Database.Group", b =>
                 {
-                    b.Property<int>("GroupId")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.HasKey("GroupId");
+                    b.Property<int>("GroupNr");
+
+                    b.HasKey("Id");
 
                     b.ToTable("Groups");
                 });
@@ -126,8 +136,12 @@ namespace DAB2.Migrations
 
             modelBuilder.Entity("DAB2.Database.Student", b =>
                 {
-                    b.Property<int>("StudentId")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AuId")
+                        .IsRequired();
 
                     b.Property<string>("EnrolledDate")
                         .IsRequired();
@@ -135,12 +149,12 @@ namespace DAB2.Migrations
                     b.Property<string>("GraduationDate")
                         .IsRequired();
 
-                    b.Property<int>("GroupId");
+                    b.Property<string>("GroupNr");
 
                     b.Property<string>("Name")
                         .IsRequired();
 
-                    b.HasKey("StudentId");
+                    b.HasKey("Id");
 
                     b.ToTable("Students");
                 });
@@ -155,13 +169,17 @@ namespace DAB2.Migrations
 
                     b.HasIndex("GroupId");
 
-                    b.ToTable("StudentGroup");
+                    b.ToTable("StudentGroups");
                 });
 
             modelBuilder.Entity("DAB2.Database.Teacher", b =>
                 {
-                    b.Property<int>("TeacherId")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AuId")
+                        .IsRequired();
 
                     b.Property<string>("Birthday")
                         .IsRequired();
@@ -169,7 +187,7 @@ namespace DAB2.Migrations
                     b.Property<string>("Name")
                         .IsRequired();
 
-                    b.HasKey("TeacherId");
+                    b.HasKey("Id");
 
                     b.ToTable("Teachers");
                 });

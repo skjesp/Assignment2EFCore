@@ -14,9 +14,9 @@
             <hr />
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
-                <label>Au-id</label>
-                <input asp-for="Student.StudentId" class="form-control" placeholder="123456"/>
-                <span asp-validation-for="Student.StudentId" class="text-danger"></span>
+                <label asp-for="Student.AuId"></label>
+                <input asp-for="Student.AuId" class="form-control" placeholder="123456"/>
+                <span asp-validation-for="Student.AuId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Student.Name"></label>
@@ -34,9 +34,9 @@
                 <span asp-validation-for="Student.GraduationDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Student.GroupId"></label>
-                <input asp-for="Student.GroupId" class="form-control" placeholder="21"/>
-                <span asp-validation-for="Student.GroupId" class="text-danger"></span>
+                <label asp-for="Student.GroupNr"></label>
+                <input asp-for="Student.GroupNr" class="form-control" placeholder="21"/>
+                <span asp-validation-for="Student.GroupNr" class="text-danger"></span>
             </div>
             <hr />
             <button type="submit" class="btn btn-primary">Create</button>

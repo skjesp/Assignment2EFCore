@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,21 +10,21 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DAB2.Pages
 {
-    public class EnrollStudentInCourseModel : PageModel
+    public class AssignStudenToGroupModel : PageModel
     {
         private readonly AppDbContext _db;
 
-        public EnrollStudentInCourseModel(AppDbContext db)
+        public AssignStudenToGroupModel(AppDbContext db)
         {
             _db = db;
         }
 
         [BindProperty]
-        public CourseStudent CourseStudent { get; set; }
+        public StudentGroup StudentGroup { get; set; }
 
         public List<SelectListItem> listStudents { get; set; }
 
-        public List<SelectListItem> listCourses { get; set; }
+        public List<SelectListItem> listGroups { get; set; }
 
         public void OnGet()
         {
@@ -35,26 +35,32 @@ namespace DAB2.Pages
             }
             listStudents = listStudent;
 
-            List<SelectListItem> listCourse = new List<SelectListItem>();  
-            foreach (var course in _db.Courses)
+            List<SelectListItem> listGroup = new List<SelectListItem>();  
+            foreach (var group in _db.Groups)
             {
-                listCourse.Add(new SelectListItem() { Value = course.Id.ToString(), Text = course.Name });
+                listGroup.Add(new SelectListItem() { Value = group.Id.ToString(), Text = group.GroupNr.ToString() });
             }
-            listCourses = listCourse;
+            listGroups = listGroup;
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
             //Validedata ModelState is valid.
-            if (!ModelState.IsValid)
+            if(!ModelState.IsValid)
             {
                 return Page();
             }
 
-            //Add object of Student to database & save changes.
-            _db.Add(CourseStudent);
+            var student = _db.Students.Single(s => s.Id.Equals(StudentGroup.StudentId));
+
+            var group = _db.Groups.Single(g => g.Id == StudentGroup.GroupId);
+
+            student.GroupNr = group.GroupNr.ToString();
+
+            //Add object to database & save changes.
+            _db.StudentGroups.Add(StudentGroup);
             await _db.SaveChangesAsync();
-                
+
             //Redirect to /Index page.
             return RedirectToPage("/Index");
         }

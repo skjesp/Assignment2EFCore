@@ -32,6 +32,8 @@ namespace DAB2.Pages
 
         public List<GroupAssignment> GroupAssignments { get; set; }
 
+        public List<StudentGroup> StudentGroup { get; set; }
+
         public async Task OnGetAsync()
         {
             //Load list of Courses

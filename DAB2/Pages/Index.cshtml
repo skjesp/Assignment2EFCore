@@ -5,7 +5,7 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">DAB2-Exercise EF core</h1>
+    <h3 class="display-4">DAB2-Exercise EF core</h3>
 </div>
 
 <h5>Search</h5>
@@ -52,7 +52,7 @@
     @foreach (var course in @Model.Courses)
     {
         <tr>
-            <td>@course.CourseId</td>
+            <td>@course.Id</td>
             <td>@course.Name</td>
             <td>@course.ContentId</td>
             <td>@course.CalendarId</td>
@@ -70,17 +70,17 @@
         <th>Name</th>
         <th>Enrolled Date</th>
         <th>Graduation Date</th>
-        <th>Group-id</th>
+        <th>GroupNr</th>
     </tr>
 
     @foreach (var student in @Model.Students)
     {
         <tr>
-            <td>@student.StudentId</td>
+            <td>@student.AuId</td>
             <td>@student.Name</td>
             <td>@student.EnrolledDate</td>
             <td>@student.GraduationDate</td>
-            <td>@student.GroupId</td>
+            <td>@student.GroupNr</td>
         </tr>
     }
 </table>
@@ -90,7 +90,7 @@
 <h5>List of Teachers</h5>
 <table>
     <tr>
-        <th>TeacherId</th>
+        <th>AuId</th>
         <th>Birthday</th>
         <th>Name</th>
     </tr>
@@ -98,7 +98,7 @@
     @foreach (var teacher in @Model.Teachers)
     {
         <tr>
-            <td>@teacher.TeacherId</td>
+            <td>@teacher.AuId</td>
             <td>@teacher.Birthday</td>
             <td>@teacher.Name</td>
         </tr>
@@ -110,7 +110,7 @@
 <h5>Assignments</h5>
 <table>
     <tr>
-        <th>AssignmentId</th>
+        <th>AssignmentsId</th>
         <th>Name</th>
         <th>DueDate</th>
         <th>GroupSize</th>
@@ -119,7 +119,7 @@
     @foreach (var assignment in @Model.Assignments)
     {
         <tr>
-            <td>@assignment.AssignmentId</td>
+            <td>@assignment.Id</td>
             <td>@assignment.Name</td>
             <td>@assignment.DueDate</td>
             <td>@assignment.GroupSize</td>
@@ -133,12 +133,14 @@
 <table>
     <tr>
         <th>GroupId</th>
+        <th>GroupNr</th>
     </tr>
 
     @foreach (var group in @Model.Groups)
     {
         <tr>
-            <td>@group.GroupId</td>
+            <td>@group.Id</td>
+            <td>@group.GroupNr</td>
         </tr>
     }
 </table>

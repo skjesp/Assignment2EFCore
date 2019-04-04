@@ -21,16 +21,18 @@ namespace DAB2.Database
 
         public DbSet<GroupAssignment> GroupAssignments { get; set; }
 
+        public DbSet<StudentGroup> StudentGroups { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Filename=Database.db");
+            //optionsBuilder.UseSqlite("Filename=Database.db");
             //optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=DAB_AFL2;Integrated Security=True");
             //optionsBuilder.UseSqlServer("Server=tcp:dabexercise.database.windows.net,1433;Initial Catalog=DAB;Persist Security Info=False;User ID=DAB;Password=Qwerty1!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+            optionsBuilder.UseSqlServer("Server=127.0.0.1,1433; Database=DAB2; User Id=SA; Password=D15987532147er!");
         }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //For Course and Teacher
+            //For Course - Teacher(many to many relationship)
             modelBuilder.Entity<CourseTeacher>()
                 .HasKey(p => new {p.CourseId, p.TeacherId});
 
@@ -44,7 +46,7 @@ namespace DAB2.Database
                 .WithMany(ct => ct.CourseTeacher)
                 .HasForeignKey(ct => ct.TeacherId);
 
-            //For Course and Assignment 
+            //For Course - Assignment(many to many relationship) 
             modelBuilder.Entity<CourseAssignment>()
                 .HasKey(p => new {p.CourseId, p.AssignmentId});
 
@@ -58,7 +60,7 @@ namespace DAB2.Database
                 .WithMany(ca => ca.CourseAssignment)
                 .HasForeignKey(a => a.AssignmentId);
 
-            // Student - Course (many to many relationship)
+            // Student - Course(many to many relationship)
             modelBuilder.Entity<CourseStudent>()
                 .HasKey(p => new {p.StudentID, p.CourseID});
 
@@ -72,7 +74,7 @@ namespace DAB2.Database
                 .WithMany(s => s.CourseStudents)
                 .HasForeignKey(cs => cs.StudentID);
 
-            //For Student and Group 
+            //For Student - Group(many to many relationship)
             modelBuilder.Entity<StudentGroup>()
                 .HasKey(p => new {p.StudentId, p.GroupId});
 
@@ -86,7 +88,7 @@ namespace DAB2.Database
                 .WithMany(sg => sg.StudentGroup)
                 .HasForeignKey(g => g.GroupId);
 
-            //For Group and GroupAssignment
+            //For Group - Assignment(many to many relationship)
             modelBuilder.Entity<GroupAssignment>()
                 .HasKey(p => new {p.GroupId, p.AssignmentId});
 
@@ -99,6 +101,7 @@ namespace DAB2.Database
                 .HasOne(a => a.Assignment)
                 .WithMany(ga => ga.GroupAssignment)
                 .HasForeignKey(a => a.AssignmentId);
+
         }
     }
 }

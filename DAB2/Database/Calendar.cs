@@ -6,7 +6,7 @@ namespace DAB2.Database
     public class Calendar
     {
         [Key]
-        public int CalendarId { get; set; } 
+        public int Id { get; set; } 
 
         [Required]
         public string Date { get; set; }

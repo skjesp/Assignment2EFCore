@@ -34,14 +34,14 @@ namespace DAB2.Pages
             List<SelectListItem> listGroup = new List<SelectListItem>();   
             foreach (var group in _db.Groups)
             {
-                listGroup.Add(new SelectListItem() { Value = group.GroupId.ToString(), Text = group.GroupId.ToString() });
+                listGroup.Add(new SelectListItem() { Value = group.Id.ToString(), Text = group.GroupNr.ToString() });
             }
             listGroups = listGroup;
 
             List<SelectListItem> listAssignment = new List<SelectListItem>();  
             foreach (var assignment in _db.Assignments)
             {
-                listAssignment.Add(new SelectListItem() { Value = assignment.AssignmentId.ToString(), Text = assignment.Name });
+                listAssignment.Add(new SelectListItem() { Value = assignment.Id.ToString(), Text = assignment.Name });
             }
             listAssignments = listAssignment; 
 

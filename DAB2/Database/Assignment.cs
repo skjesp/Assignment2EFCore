@@ -7,7 +7,7 @@ namespace DAB2.Database
     public class Assignment
     {
         [Key]
-        public int AssignmentId { get; set; } 
+        public int Id { get; set; } 
 
         [Required]
         public string Name { get; set; }

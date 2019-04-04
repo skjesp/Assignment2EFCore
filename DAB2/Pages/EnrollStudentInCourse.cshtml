@@ -12,26 +12,31 @@
             <h5>Create a new student.</h5>
             <hr />
             <div asp-validation-summary="All" class="text-danger"></div>
+
             <div class="form-group">
-                <label>Student Au-id</label>
-                <input asp-for="CourseStudent.StudentID" class="form-control" placeholder="123456" />
+                <label asp-for="CourseStudent.StudentID"></label>
+                <select asp-for="CourseStudent.StudentID" asp-items="Model.listStudents" class="form-control"></select>
                 <span asp-validation-for="CourseStudent.StudentID" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label>Course id</label>
-                <input asp-for="CourseStudent.CourseID" class="form-control" placeholder="123456" />
+                <label asp-for="CourseStudent.CourseID"></label>
+                <select asp-for="CourseStudent.CourseID" asp-items="Model.listCourses" class="form-control"></select>
                 <span asp-validation-for="CourseStudent.CourseID" class="text-danger"></span>
-            </div>
+            </div> 
+
             <div class="form-group">
                 <label>IsCoursePassed</label>
                 <input type="checkbox" asp-for="CourseStudent.IsCoursePassed"/>
                 <span asp-validation-for="CourseStudent.IsCoursePassed" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label>IsCourseActive</label>
                 <input type="checkbox" asp-for="CourseStudent.IsCourseActive"/>
                 <span asp-validation-for="CourseStudent.IsCourseActive" class="text-danger"></span>
             </div>
+
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>

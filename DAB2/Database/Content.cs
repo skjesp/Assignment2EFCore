@@ -6,7 +6,7 @@ namespace DAB2.Database
     public class Content
     {
         [Key]
-        public int ContentId { get; set; } 
+        public int Id { get; set; } 
         
         [Required]
         public int BinaryData { get; set; }
