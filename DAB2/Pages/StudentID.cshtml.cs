@@ -19,13 +19,11 @@ namespace DAB2.Pages
             _db = db;
         }
 
-        [BindProperty]
-        public inputModel input
+        [BindProperty] public inputModel input { get; set; }
+
+        public class inputModel
         {
-            get; set;
-        }
-        public class inputModel {
-            public int StudentID{get; set;}
+            public int StudentID { get; set; }
         }
 
         public List<CourseStudent> enrolments { get; set; }
@@ -39,6 +37,7 @@ namespace DAB2.Pages
                     enrolments.Add(ting);
                 }
             }
+
             //Redirect to /Index page.
             return RedirectToPage("/Index");
         }
@@ -49,4 +48,5 @@ namespace DAB2.Pages
 
             //}
         }
+    }
 }

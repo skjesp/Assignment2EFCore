@@ -4,8 +4,10 @@ using Microsoft.EntityFrameworkCore.Sqlite;
 namespace DAB2.Database
 {
     public class AppDbContext : DbContext
-    { 
-        public AppDbContext() : base() {}
+    {
+        public AppDbContext() : base()
+        {
+        }
 
         public DbSet<Course> Courses { get; set; }
 
@@ -52,7 +54,7 @@ namespace DAB2.Database
                 .WithMany(ca => ca.CourseAssignment)
                 .HasForeignKey(a => a.AssignmentId);
 
-            modelBuilder.Entity<CourseStudent>().HasKey(p => new { p.StudentID, p.CourseID });
+            modelBuilder.Entity<CourseStudent>().HasKey(p => new {p.StudentID, p.CourseID});
             modelBuilder.Entity<CourseStudent>()
                 .HasOne(cs => cs.Course)
                 .WithMany(c => c.CourseStudents)
@@ -63,5 +65,5 @@ namespace DAB2.Database
                 .HasForeignKey(cs => cs.StudentID);
         }
     }
-    }
+
 }
