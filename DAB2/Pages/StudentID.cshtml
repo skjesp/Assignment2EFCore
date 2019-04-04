@@ -34,7 +34,7 @@
         <th>Grade</th>
     </tr>
 
-    @*@foreach (var course in @Model.enrolment)
+    @foreach (var course in @Model.enrolment)
     {
         <tr>
             <td>@course.CourseId</td>
@@ -42,7 +42,7 @@
             <td>@course.Status</td>
             <td>@course.Grade</td>
         </tr>
-    }*@
+    }
 </table>
 
 @section Scripts {
