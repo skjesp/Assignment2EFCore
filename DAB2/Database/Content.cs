@@ -20,7 +20,7 @@ namespace DAB2.Database
         [Required]
         public string VideoLink { get; set; }
 
-        public string CourseId { get; set; }
+        public int CourseId { get; set; }
 
         public string ContentAreaId { get; set; }
     }
