@@ -20,8 +20,10 @@ namespace DAB2.Database
         [Required]
         public string VideoLink { get; set; }
 
-        public string CourseId { get; set; }
-
         public string ContentAreaId { get; set; }
+
+        //One to One Course and Context
+        public int CourseId { get; set; }
+        public Course Course { get; set; }
     }
 }

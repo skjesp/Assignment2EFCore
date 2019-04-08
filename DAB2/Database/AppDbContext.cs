@@ -98,6 +98,12 @@ namespace DAB2.Database
                 .HasOne(a => a.Assignment)
                 .WithMany(ga => ga.GroupAssignment)
                 .HasForeignKey(a => a.AssignmentId);
+
+            //One to one Course and Content
+            modelBuilder.Entity<Content>()
+                .HasOne(c => c.Course)
+                .WithOne(c => c.Content)
+                .HasForeignKey<Course>();
         }
     }
 }

@@ -12,8 +12,6 @@ namespace DAB2.Database
         [Required]
         public string Name { get; set; }
 
-        public string ContentId { get; set; }
-
         public string CalendarId { get; set; }
 
         public List<CourseTeacher> CourseTeacher { get; set; }
@@ -21,5 +19,10 @@ namespace DAB2.Database
         public List<CourseAssignment> CourseAssignment { get; set; }
         
         public List<CourseStudent> CourseStudents { get; set; }
+
+        //One to One Course and Context
+        public int ContentId { get; set; }
+        public Content Content { get; set; }
+
     }
 }
