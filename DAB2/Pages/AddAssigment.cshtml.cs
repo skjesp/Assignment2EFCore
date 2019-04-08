@@ -9,17 +9,17 @@ using DAB2.Database;
 
 namespace DAB2.Pages
 {
-    public class AddStudentModel : PageModel
+    public class AddAssignmentModel : PageModel
     {
         private readonly AppDbContext _db;
 
-        public AddStudentModel(AppDbContext db)
+        public AddAssignmentModel(AppDbContext db)
         {
             _db = db;
         }
 
         [BindProperty]
-        public Student Student { get; set; }
+        public Assignment Assignment { get; set; }
 
         public async Task OnGetAsync()
         {
@@ -35,7 +35,7 @@ namespace DAB2.Pages
             }
 
             //Add object to database & save changes.
-            _db.Students.Add(Student);
+            _db.Assignments.Add(Assignment);
             await _db.SaveChangesAsync();
 
             //Redirect to /Index page.

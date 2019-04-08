@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
 using DAB2.Database;
 
 namespace DAB2
@@ -32,7 +33,9 @@ namespace DAB2
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            //Add AppDbContext as a service for Products-database.
+            //Add AppDbContext as a service for database.
+            //services.AddEntityFrameworkSqlite().AddDbContext<AppDbContext>();
+
             services.AddEntityFrameworkSqlServer().AddDbContext<AppDbContext>();
 
 

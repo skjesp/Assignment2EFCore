@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-//using Microsoft.EntityFrameworkCore.Sqlite;
 using Microsoft.EntityFrameworkCore.SqlServer;
 
 namespace DAB2.Database
@@ -15,20 +14,25 @@ namespace DAB2.Database
         public DbSet<Student> Students { get; set; }
 
         public DbSet<Assignment> Assignments { get; set; }
+
         public DbSet<CourseStudent> CourseStudents { get; set; }
+        
+        public DbSet<Group> Groups { get; set; }
+
+        public DbSet<GroupAssignment> GroupAssignments { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlite("Filename=Database.db");
-            optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=DAB_AFL2;Integrated Security=True");
-            //optionsBuilder.UseSqlite("Data Source=Database.db");
+            optionsBuilder.UseSqlite("Filename=Database.db");
+            //optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=DAB_AFL2;Integrated Security=True");
+            //optionsBuilder.UseSqlServer("Server=tcp:dabexercise.database.windows.net,1433;Initial Catalog=DAB;Persist Security Info=False;User ID=DAB;Password=Qwerty1!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //For Course and Teacher
             modelBuilder.Entity<CourseTeacher>()
-                .HasKey(ct => new {ct.CourseId, ct.TeacherId});
+                .HasKey(p => new {p.CourseId, p.TeacherId});
 
             modelBuilder.Entity<CourseTeacher>()
                 .HasOne(c => c.Course)
@@ -42,7 +46,7 @@ namespace DAB2.Database
 
             //For Course and Assignment 
             modelBuilder.Entity<CourseAssignment>()
-                .HasKey(ca => new {ca.CourseId, ca.AssignmentId});
+                .HasKey(p => new {p.CourseId, p.AssignmentId});
 
             modelBuilder.Entity<CourseAssignment>()
                 .HasOne(c => c.Course)
@@ -53,8 +57,11 @@ namespace DAB2.Database
                 .HasOne(a => a.Assignment)
                 .WithMany(ca => ca.CourseAssignment)
                 .HasForeignKey(a => a.AssignmentId);
+
             // Student - Course (many to many relationship)
-            modelBuilder.Entity<CourseStudent>().HasKey(p => new {p.StudentID, p.CourseID});
+            modelBuilder.Entity<CourseStudent>()
+                .HasKey(p => new {p.StudentID, p.CourseID});
+
             modelBuilder.Entity<CourseStudent>()
                 .HasOne(cs => cs.Course)
                 .WithMany(c => c.CourseStudents)

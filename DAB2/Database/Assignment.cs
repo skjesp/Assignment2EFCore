@@ -19,5 +19,7 @@ namespace DAB2.Database
         public int GroupSize { get; set; }
 
         public List<CourseAssignment> CourseAssignment { get; set; }
+
+        public List<GroupAssignment> GroupAssignment { get; set; }
     }
 }

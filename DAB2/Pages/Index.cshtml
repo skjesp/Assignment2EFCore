@@ -9,6 +9,9 @@
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 
+
+<h5>Search </h5>
+
 <h5>List of Courses</h5>
 <table>
     <tr>
@@ -55,9 +58,6 @@
 </table>
 
 <br/>
-<br />
-
-
 
 <h5>List of Teachers</h5>
 <table>
@@ -99,11 +99,53 @@
     }
 </table>
 
-<h5>List of Enrolled Students</h5>
+
+<br/>
+
+<h5>Groups</h5>
 <table>
     <tr>
-        <th>Student auid</th>
-        <th>Course-id</th>
+        <th>GroupId</th>
+    </tr>
+
+    @foreach (var group in @Model.Groups)
+    {
+        <tr>
+            <td>@group.GroupId</td>
+        </tr>
+    }
+</table>
+
+<br/>
+
+<h5>Graded assignments</h5>
+<table>
+    <tr>
+        <th>GroupId</th>
+        <th>AssignmentId</th>
+        <th>Grade</th>
+    </tr>
+
+    @foreach (var groupAssignment in @Model.GroupAssignments)
+    {
+        <tr>
+            <td>@groupAssignment.GroupId</td>
+            <td>@groupAssignment.AssignmentId</td>
+            <td>@groupAssignment.Grade</td>
+        </tr>
+    }
+</table>
+
+<br/>
+
+<h5>Students within course</h5>
+<table>
+    <tr>
+        <th>StudentId</th>
+        <th>CourseId</th>
+        <th>Coursed passed</th>
+        <th>Course active</th>
+
     </tr>
 
     @foreach (var CourseStudent in @Model.CourseStudents)
@@ -111,6 +153,10 @@
         <tr>
             <td>@CourseStudent.StudentID</td>
             <td>@CourseStudent.CourseID</td>
+
+            <td>@CourseStudent.IsCoursePassed</td>
+            <td>@CourseStudent.IsCourseActive</td>
+
         </tr>
     }
 </table>

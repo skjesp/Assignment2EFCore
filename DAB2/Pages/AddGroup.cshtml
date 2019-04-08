@@ -1,0 +1,29 @@
+@page
+@model AddGroupModel
+@{
+    ViewData["Title"] = "Add Group";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Use this page to add new group.</p>
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <h5>Create a new Group.</h5>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Group.GroupId"></label>
+                <input asp-for="Group.GroupId" class="form-control" placeholder="13"/>
+                <span asp-validation-for="Group.GroupId" class="text-danger"></span>
+            </div>
+            <hr />
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
