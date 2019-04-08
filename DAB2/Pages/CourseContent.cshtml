@@ -1,5 +1,5 @@
-﻿@page
-@model DAB2.Pages.CourseContentModel
+@page
+@model CourseContentModel
 @{
     ViewData["Title"] = "Course Content";
 }
@@ -9,21 +9,22 @@
 <div class="row">
     <div class="col-md-6">
         <form method="post">
-            <h5>Create a new course.</h5>
+            <h5>Search Content by Course name.</h5>
             <hr />
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="input.CourseID"></label>
-                <input asp-for="input.CourseID" class="form-control" placeholder="1" />
-                <span asp-validation-for="input.CourseID" class="text-danger"></span>
+                <input asp-for="Input.searchString" class="form-control" placeholder="I4-***"/>
+                <span asp-validation-for="Input.searchString" class="text-danger"></span>
             </div>
             <hr />
-            <button type="submit" class="btn btn-primary">Get Content</button>
+            <button type="submit" class="btn btn-primary">Search</button>
         </form>
     </div>
 </div>
 
-<h5>Teachers in course</h5>
+<br/>
+
+<h5>Content within course</h5>
 <table>
     <tr>
         <th>Binary Data</th>
@@ -33,7 +34,7 @@
 
     </tr>
 
-    @foreach (var course in @Model.contents)
+    @foreach (var course in @Model.Contents)
     {
         <tr>
             <td>@course.BinaryData</td>

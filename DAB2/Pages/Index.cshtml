@@ -8,15 +8,13 @@
     <h3 class="display-4">DAB2-Exercise EF core</h3>
 </div>
 
-<h5>Search</h5>
-<form method="post">
-    <div id="searchField" class="input-group">
-        <input type="text" class="form-control" name="studentId"/>
-        <span class="input-group-addon"></span>
-        <button type="submit" class="btn btn-primary" asp-page-handler="SearchStudent" 
-            asp-route-id="studentId" class="form-control">Search</button>
-    </div>
-</form>
+<h5>Search functions</h5>
+<div>
+    <a href="/StudentCourse">Search Courses by Student AuId</a>
+    <br/>
+    <a href="/CourseContent">Search Content by Course Name</a>
+</div>
+
 <br/>
 
 <h5>List of Courses</h5>
@@ -130,28 +128,6 @@
             <td>@groupAssignment.AssignmentName</td>
             <td>@groupAssignment.TeacherName</td>
             <td>@groupAssignment.Grade</td>
-        </tr>
-    }
-</table>
-
-<br/>
-
-<h5>Students within course</h5>
-<table>
-    <tr>
-        <th>StudentAuId</th>
-        <th>CourseName</th>
-        <th>Coursed passed</th>
-        <th>Course active</th>
-    </tr>
-
-    @foreach (var CourseStudent in @Model.CourseStudents)
-    {
-        <tr>
-            <td>@CourseStudent.StudentAuId</td>
-            <td>@CourseStudent.CourseName</td>
-            <td>@CourseStudent.IsCoursePassed</td>
-            <td>@CourseStudent.IsCourseActive</td>
         </tr>
     }
 </table>

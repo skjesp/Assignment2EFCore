@@ -11,17 +11,17 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DAB2.Pages
 {
-    public class CourseContentModel : PageModel
+    public class StudentCourseModel : PageModel
     {
         private readonly AppDbContext _db;
 
-        public CourseContentModel(AppDbContext db)
+        public StudentCourseModel(AppDbContext db)
         {
             _db = db;
-            Contents = new List<Content>();
+            CourseStudents = new List<CourseStudent>();
         }
 
-        public List<Content> Contents { get; set; }
+        public List<CourseStudent> CourseStudents { get; set; }
        
         [BindProperty]
         public InputModel Input { get; set; }
@@ -34,15 +34,15 @@ namespace DAB2.Pages
         //Search students by AU-id and get Courses with status and grade.
         public async Task<IActionResult> OnPostAsync()
         {
-            var courseContent = from cts in _db.Contents
-                select cts;
-                    
+            var courseStudents = from sc in _db.CourseStudents
+                select sc;
+        
             if (!string.IsNullOrEmpty(Input.searchString))
             {
-                courseContent = courseContent.Where(s => s.Course.Name.Contains(Input.searchString));
+                courseStudents = courseStudents.Where(s => s.StudentAuId.Contains(Input.searchString));
 
                 //Check if we found anyting
-                if (courseContent.AsNoTracking().ToList().Count != 0)
+                if (courseStudents.AsNoTracking().ToList().Count != 0)
                 {
                     //Succes found a match
 
@@ -57,7 +57,7 @@ namespace DAB2.Pages
                 //Do nothing if no search-string id entered.
             }
             //Load list of StudentGroups
-            Contents = await courseContent.AsNoTracking().ToListAsync();
+            CourseStudents = await courseStudents.AsNoTracking().ToListAsync();
 
         //Update current page.
         return Page();
