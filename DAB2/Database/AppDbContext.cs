@@ -103,11 +103,11 @@ namespace DAB2.Database
                 .HasForeignKey(a => a.AssignmentId);
 
             //One to one Course and Content
-            modelBuilder.Entity<Content>()
-                .HasOne(c => c.Course)
-                .WithOne(c => c.Content)
-                .HasForeignKey<Course>();
-                
+            modelBuilder.Entity<Course>()
+                .HasOne(c => c.Content)
+                .WithOne(c => c.Course)
+                .HasForeignKey<Content>();
+
             //One to Many (Teacher can give many grades to assigments)
             modelBuilder.Entity<GroupAssignment>()
                 .HasOne(ga => ga.Teacher)

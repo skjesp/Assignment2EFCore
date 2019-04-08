@@ -22,7 +22,6 @@ namespace DAB2.Database
         public List<CourseStudent> CourseStudents { get; set; }
 
         //One to One Course and Context
-        public int? ContentId { get; set; }
         public Content Content { get; set; }
 
     }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DAB2.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class InitalMigrations : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -29,9 +29,7 @@ namespace DAB2.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CourseNr = table.Column<int>(nullable: false),
-                    Name = table.Column<string>(nullable: false),
-                    ContentId = table.Column<string>(nullable: true),
-                    CalendarId = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -80,6 +78,30 @@ namespace DAB2.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Teachers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Content",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    BinaryData = table.Column<int>(nullable: false),
+                    GroupSignupLink = table.Column<string>(nullable: false),
+                    AudioLink = table.Column<string>(nullable: false),
+                    VideoLink = table.Column<string>(nullable: false),
+                    ContentAreaId = table.Column<string>(nullable: true),
+                    CourseId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Content", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Content_Courses_CourseId",
+                        column: x => x.CourseId,
+                        principalTable: "Courses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -140,7 +162,9 @@ namespace DAB2.Migrations
                 columns: table => new
                 {
                     StudentId = table.Column<int>(nullable: false),
-                    GroupId = table.Column<int>(nullable: false)
+                    GroupId = table.Column<int>(nullable: false),
+                    StudentName = table.Column<string>(nullable: true),
+                    GroupNr = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -193,7 +217,8 @@ namespace DAB2.Migrations
                     Grade = table.Column<string>(nullable: true),
                     GroupNr = table.Column<int>(nullable: false),
                     AssignmentName = table.Column<string>(nullable: true),
-                    TeacherId = table.Column<int>(nullable: false)
+                    TeacherId = table.Column<int>(nullable: false),
+                    TeacherName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -217,6 +242,12 @@ namespace DAB2.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Content_CourseId",
+                table: "Content",
+                column: "CourseId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_CourseAssignment_AssignmentId",
@@ -251,6 +282,9 @@ namespace DAB2.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Content");
+
             migrationBuilder.DropTable(
                 name: "CourseAssignment");
 

@@ -23,14 +23,12 @@
 <table>
     <tr>
         <th>Name</th>
-        <th>ContentId</th>
     </tr>
 
     @foreach (var course in @Model.Courses)
     {
         <tr>
             <td>@course.Name</td>
-            <td>@course.ContentId</td>
         </tr>
     }
 </table>
