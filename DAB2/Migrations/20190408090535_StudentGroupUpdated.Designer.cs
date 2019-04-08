@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAB2.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20190404114912_InitalMigration")]
-    partial class InitalMigration
+    [Migration("20190408090535_StudentGroupUpdated")]
+    partial class StudentGroupUpdated
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -80,9 +80,13 @@ namespace DAB2.Migrations
 
                     b.Property<int>("CourseID");
 
+                    b.Property<string>("CourseName");
+
                     b.Property<bool>("IsCourseActive");
 
                     b.Property<bool>("IsCoursePassed");
+
+                    b.Property<string>("StudentAuId");
 
                     b.HasKey("StudentID", "CourseID");
 
@@ -125,11 +129,21 @@ namespace DAB2.Migrations
 
                     b.Property<int>("AssignmentId");
 
+                    b.Property<string>("AssignmentName");
+
                     b.Property<string>("Grade");
+
+                    b.Property<int>("GroupNr");
+
+                    b.Property<int>("TeacherId");
+
+                    b.Property<string>("TeacherName");
 
                     b.HasKey("GroupId", "AssignmentId");
 
                     b.HasIndex("AssignmentId");
+
+                    b.HasIndex("TeacherId");
 
                     b.ToTable("GroupAssignments");
                 });
@@ -149,8 +163,6 @@ namespace DAB2.Migrations
                     b.Property<string>("GraduationDate")
                         .IsRequired();
 
-                    b.Property<string>("GroupNr");
-
                     b.Property<string>("Name")
                         .IsRequired();
 
@@ -164,6 +176,10 @@ namespace DAB2.Migrations
                     b.Property<int>("StudentId");
 
                     b.Property<int>("GroupId");
+
+                    b.Property<int>("GroupNr");
+
+                    b.Property<string>("StudentName");
 
                     b.HasKey("StudentId", "GroupId");
 
@@ -241,6 +257,11 @@ namespace DAB2.Migrations
                     b.HasOne("DAB2.Database.Group", "Group")
                         .WithMany("GroupAssignment")
                         .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("DAB2.Database.Teacher", "Teacher")
+                        .WithMany("GroupAssignment")
+                        .HasForeignKey("TeacherId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

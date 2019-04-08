@@ -102,6 +102,11 @@ namespace DAB2.Database
                 .WithMany(ga => ga.GroupAssignment)
                 .HasForeignKey(a => a.AssignmentId);
 
+            //One to Many (Teacher can give many grades to assigments)
+            modelBuilder.Entity<GroupAssignment>()
+                .HasOne(ga => ga.Teacher)
+                .WithMany(t => t.GroupAssignment)
+                .HasForeignKey(ga => ga.TeacherId);
         }
     }
 }

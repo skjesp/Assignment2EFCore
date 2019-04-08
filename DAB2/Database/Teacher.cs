@@ -19,5 +19,7 @@ namespace DAB2.Database
         public string Name { get; set; }
 
         public List<CourseTeacher> CourseTeacher { get; set; }
+
+        public List<GroupAssignment> GroupAssignment { get; set; }
     }
 }

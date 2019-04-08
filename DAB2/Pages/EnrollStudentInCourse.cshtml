@@ -9,32 +9,28 @@
 <div class="row">
     <div class="col-md-6">
         <form method="post">
-            <h5>Create a new student.</h5>
+            <h5>Enroll student.</h5>
             <hr />
             <div asp-validation-summary="All" class="text-danger"></div>
 
             <div class="form-group">
-                <label asp-for="CourseStudent.StudentID"></label>
-                <select asp-for="CourseStudent.StudentID" asp-items="Model.listStudents" class="form-control"></select>
-                <span asp-validation-for="CourseStudent.StudentID" class="text-danger"></span>
+                <label asp-for="Input.studentId"></label>
+                <select asp-for="Input.studentId" asp-items="Model.listStudents" class="form-control"></select>
             </div>
 
             <div class="form-group">
-                <label asp-for="CourseStudent.CourseID"></label>
-                <select asp-for="CourseStudent.CourseID" asp-items="Model.listCourses" class="form-control"></select>
-                <span asp-validation-for="CourseStudent.CourseID" class="text-danger"></span>
+                <label asp-for="Input.courseId"></label>
+                <select asp-for="Input.courseId" asp-items="Model.listCourses" class="form-control"></select>
             </div> 
 
             <div class="form-group">
                 <label>IsCoursePassed</label>
-                <input type="checkbox" asp-for="CourseStudent.IsCoursePassed"/>
-                <span asp-validation-for="CourseStudent.IsCoursePassed" class="text-danger"></span>
+                <input type="checkbox" asp-for="Input.isCoursePassed"/>
             </div>
 
             <div class="form-group">
                 <label>IsCourseActive</label>
-                <input type="checkbox" asp-for="CourseStudent.IsCourseActive"/>
-                <span asp-validation-for="CourseStudent.IsCourseActive" class="text-danger"></span>
+                <input type="checkbox" asp-for="Input.isCourseActive"/>
             </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>

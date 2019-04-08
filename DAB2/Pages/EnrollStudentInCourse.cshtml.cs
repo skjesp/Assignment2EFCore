@@ -20,7 +20,18 @@ namespace DAB2.Pages
         }
 
         [BindProperty]
-        public CourseStudent CourseStudent { get; set; }
+        public InputModel Input { get; set; }
+
+        public class InputModel
+        {
+            public int courseId { get; set; }
+
+            public int studentId { get; set; }
+
+            public bool isCoursePassed { get; set; }
+
+            public bool isCourseActive { get; set; }
+        }
 
         public List<SelectListItem> listStudents { get; set; }
 
@@ -51,10 +62,22 @@ namespace DAB2.Pages
                 return Page();
             }
 
-            //Add object of Student to database & save changes.
-            _db.Add(CourseStudent);
+            var student = _db.Students.Single(s => s.Id.Equals(Input.studentId));
+
+            var course = _db.Courses.Single(g => g.Id.Equals(Input.courseId));
+
+            //Add object of CourseStudent to database & save changes.
+            _db.Add(new CourseStudent{
+                CourseID = Input.courseId,
+                StudentID = Input.studentId,
+                StudentAuId = student.AuId,
+                CourseName = course.Name,
+                IsCourseActive = Input.isCourseActive,
+                IsCoursePassed = Input.isCoursePassed
+            });
+
             await _db.SaveChangesAsync();
-                
+
             //Redirect to /Index page.
             return RedirectToPage("/Index");
         }

@@ -26,6 +26,21 @@ namespace DAB2.Pages
 
         public List<SelectListItem> listGroups { get; set; }
 
+
+        [BindProperty]
+        public InputModel Input{ get; set; }
+
+        public class InputModel
+        {
+            public int studentId { get; set; }
+
+            public int groupId { get; set; }
+
+            public string studentName { get; set; }
+
+            public int groupNr { get; set; }
+        }
+
         public void OnGet()
         {
             List<SelectListItem> listStudent = new List<SelectListItem>();   
@@ -51,14 +66,17 @@ namespace DAB2.Pages
                 return Page();
             }
 
-            var student = _db.Students.Single(s => s.Id.Equals(StudentGroup.StudentId));
+            var student = _db.Students.Single(s => s.Id.Equals(Input.studentId));
 
-            var group = _db.Groups.Single(g => g.Id == StudentGroup.GroupId);
-
-            student.GroupNr = group.GroupNr.ToString();
+            var group = _db.Groups.Single(g => g.Id.Equals(Input.groupId));
 
             //Add object to database & save changes.
-            _db.StudentGroups.Add(StudentGroup);
+            _db.StudentGroups.Add(new StudentGroup{
+                StudentId = Input.studentId,
+                GroupId = Input.groupId,
+                StudentName = student.Name,
+                GroupNr = group.GroupNr
+            });
             await _db.SaveChangesAsync();
 
             //Redirect to /Index page.

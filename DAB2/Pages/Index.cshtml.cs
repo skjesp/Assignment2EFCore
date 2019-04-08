@@ -32,7 +32,7 @@ namespace DAB2.Pages
 
         public List<GroupAssignment> GroupAssignments { get; set; }
 
-        public List<StudentGroup> StudentGroup { get; set; }
+        public List<StudentGroup> StudentGroups { get; set; }
 
         public async Task OnGetAsync()
         {
@@ -54,20 +54,22 @@ namespace DAB2.Pages
             //Load list of Groups
             Groups = await _db.Groups.AsNoTracking().ToListAsync();
 
-            //Load list of GroupAssignment
+            //Load list of GroupAssignments
             GroupAssignments = await _db.GroupAssignments.AsNoTracking().ToListAsync();
+
+            //Load list of StudentGroups
+            StudentGroups = await _db.StudentGroups.AsNoTracking().ToListAsync();
         }
 
-
         //Search students by AU-id and get Courses with status and grade.
-        public async Task<IActionResult> OnPostSearchStudentAsync(int studentId)
+        public async Task<IActionResult> OnPostSearchStudentAsync(string studentId)
         {
             var studentcourse = from sc in _db.CourseStudents
                 select sc;
         
-            if (Convert.ToString(studentId) != String.Empty)
+            if (!string.IsNullOrEmpty(studentId))
             {
-                studentcourse = studentcourse.Where(s => s.StudentID.Equals(studentId));
+                studentcourse = studentcourse.Where(s => s.StudentAuId.Equals(studentId));
 
                 //Check if we found anyting
                 if (studentcourse.AsNoTracking().ToList().Count != 0)
@@ -85,7 +87,6 @@ namespace DAB2.Pages
                 //Do nothing if no search id id entered.
                 
             }
-
                 //Update tables
                 CourseStudents = await studentcourse.AsNoTracking().ToListAsync();
 

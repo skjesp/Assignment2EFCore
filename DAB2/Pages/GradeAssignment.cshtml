@@ -15,21 +15,27 @@
             <div asp-validation-summary="All" class="text-danger"></div>
 
             <div class="form-group">
-                <label asp-for="GroupAssignment.GroupId"></label>
-                <select asp-for="GroupAssignment.GroupId" asp-items="Model.listGroups" class="form-control"></select>
-                <span asp-validation-for="GroupAssignment.GroupId" class="text-danger"></span>
+                <label asp-for="Input.groupId"></label>
+                <select asp-for="Input.groupId" asp-items="Model.listGroups" class="form-control"></select>
+                <span asp-validation-for="Input.groupId" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="GroupAssignment.AssignmentId"></label>
-                <select asp-for="GroupAssignment.AssignmentId" asp-items="Model.listAssignments" class="form-control"></select>
-                <span asp-validation-for="GroupAssignment.AssignmentId" class="text-danger"></span>
+                <label asp-for="Input.assignmentId"></label>
+                <select asp-for="Input.assignmentId" asp-items="Model.listAssignments" class="form-control"></select>
+                <span asp-validation-for="Input.assignmentId" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="GroupAssignment.Grade"></label>
-                <select asp-for="GroupAssignment.Grade" asp-items="Model.listGrades" class="form-control"></select>
-                <span asp-validation-for="GroupAssignment.Grade" class="text-danger"></span>
+                <label asp-for="Input.grade"></label>
+                <select asp-for="Input.grade" asp-items="Model.listGrades" class="form-control"></select>
+                <span asp-validation-for="Input.grade" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.teacherId"></label>
+                <select asp-for="Input.teacherId" asp-items="Model.listTeachers" class="form-control"></select>
+                <span asp-validation-for="Input.teacherId" class="text-danger"></span>
             </div>
                 <button type="submit" class="btn btn-primary">Assign</button>
             <br/>

@@ -15,7 +15,7 @@
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Student.AuId"></label>
-                <input asp-for="Student.AuId" class="form-control" placeholder="123456"/>
+                <input asp-for="Student.AuId" class="form-control" placeholder="au123456"/>
                 <span asp-validation-for="Student.AuId" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -32,11 +32,6 @@
                 <label asp-for="Student.GraduationDate"></label>
                 <input asp-for="Student.GraduationDate" class="form-control" placeholder="2021"/>
                 <span asp-validation-for="Student.GraduationDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Student.GroupNr"></label>
-                <input asp-for="Student.GroupNr" class="form-control" placeholder="21"/>
-                <span asp-validation-for="Student.GroupNr" class="text-danger"></span>
             </div>
             <hr />
             <button type="submit" class="btn btn-primary">Create</button>
