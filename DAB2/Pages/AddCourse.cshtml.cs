@@ -21,11 +21,6 @@ namespace DAB2.Pages
         [BindProperty]
         public Course Course { get; set; }
 
-        public async Task OnGetAsync()
-        {
-            //No usage.
-        }
-
         public async Task<IActionResult> OnPostAsync()
         {
             //Validedata ModelState is valid.
