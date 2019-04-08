@@ -1,0 +1,45 @@
+﻿@page
+@model DAB2.Pages.CourseContentModel
+@{
+    ViewData["Title"] = "Course Content";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <h5>Create a new course.</h5>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="input.CourseID"></label>
+                <input asp-for="input.CourseID" class="form-control" placeholder="1" />
+                <span asp-validation-for="input.CourseID" class="text-danger"></span>
+            </div>
+            <hr />
+            <button type="submit" class="btn btn-primary">Get Content</button>
+        </form>
+    </div>
+</div>
+
+<h5>Teachers in course</h5>
+<table>
+    <tr>
+        <th>Binary Data</th>
+        <th>Group Signup Link</th>
+        <th>Audio Link</th>
+        <th>Video Link</th>
+
+    </tr>
+
+    @foreach (var course in @Model.contents)
+    {
+        <tr>
+            <td>@course.BinaryData</td>
+            <td>@course.GroupSignupLink</td>
+            <td>@course.AudioLink</td>
+            <td>@course.VideoLink</td>
+        </tr>
+    }
+</table>
