@@ -14,5 +14,8 @@ namespace DAB2.Database
         public bool IsCoursePassed { get; set; }
         public bool IsCourseActive { get; set; }
 
+        public string StudentAuId { get; set; }
+
+        public string CourseName { get; set; }
     }
 }

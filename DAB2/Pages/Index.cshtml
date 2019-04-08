@@ -5,16 +5,23 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h3 class="display-4">DAB2-Exercise EF core</h3>
 </div>
 
-<h5>Search </h5>
+<h5>Search</h5>
+<form method="post">
+    <div id="searchField" class="input-group">
+        <input type="text" class="form-control" name="studentId"/>
+        <span class="input-group-addon"></span>
+        <button type="submit" class="btn btn-primary" asp-page-handler="SearchStudent" 
+            asp-route-id="studentId" class="form-control">Search</button>
+    </div>
+</form>
+<br/>
 
 <h5>List of Courses</h5>
 <table>
     <tr>
-        <th>Id</th>
         <th>Name</th>
         <th>ContentId</th>
         <th>CalendarId</th>
@@ -23,7 +30,6 @@
     @foreach (var course in @Model.Courses)
     {
         <tr>
-            <td>@course.CourseId</td>
             <td>@course.Name</td>
             <td>@course.ContentId</td>
             <td>@course.CalendarId</td>
@@ -41,17 +47,15 @@
         <th>Name</th>
         <th>Enrolled Date</th>
         <th>Graduation Date</th>
-        <th>Group-id</th>
     </tr>
 
     @foreach (var student in @Model.Students)
     {
         <tr>
-            <td>@student.StudentId</td>
+            <td>@student.AuId</td>
             <td>@student.Name</td>
             <td>@student.EnrolledDate</td>
             <td>@student.GraduationDate</td>
-            <td>@student.GroupId</td>
         </tr>
     }
 </table>
@@ -61,7 +65,7 @@
 <h5>List of Teachers</h5>
 <table>
     <tr>
-        <th>Id</th>
+        <th>AuId</th>
         <th>Birthday</th>
         <th>Name</th>
     </tr>
@@ -69,7 +73,7 @@
     @foreach (var teacher in @Model.Teachers)
     {
         <tr>
-            <td>@teacher.TeacherId</td>
+            <td>@teacher.AuId</td>
             <td>@teacher.Birthday</td>
             <td>@teacher.Name</td>
         </tr>
@@ -81,7 +85,6 @@
 <h5>Assignments</h5>
 <table>
     <tr>
-        <th>Id</th>
         <th>Name</th>
         <th>DueDate</th>
         <th>GroupSize</th>
@@ -90,7 +93,6 @@
     @foreach (var assignment in @Model.Assignments)
     {
         <tr>
-            <td>@assignment.AssignmentId</td>
             <td>@assignment.Name</td>
             <td>@assignment.DueDate</td>
             <td>@assignment.GroupSize</td>
@@ -103,13 +105,13 @@
 <h5>Groups</h5>
 <table>
     <tr>
-        <th>GroupId</th>
+        <th>GroupNr</th>
     </tr>
 
     @foreach (var group in @Model.Groups)
     {
         <tr>
-            <td>@group.GroupId</td>
+            <td>@group.GroupNr</td>
         </tr>
     }
 </table>
@@ -119,16 +121,18 @@
 <h5>Graded assignments</h5>
 <table>
     <tr>
-        <th>GroupId</th>
-        <th>AssignmentId</th>
+        <th>GroupNr</th>
+        <th>AssignmentName</th>
+        <th>TeacherName</th>
         <th>Grade</th>
     </tr>
 
     @foreach (var groupAssignment in @Model.GroupAssignments)
     {
         <tr>
-            <td>@groupAssignment.GroupId</td>
-            <td>@groupAssignment.AssignmentId</td>
+            <td>@groupAssignment.GroupNr</td>
+            <td>@groupAssignment.AssignmentName</td>
+            <td>@groupAssignment.TeacherName</td>
             <td>@groupAssignment.Grade</td>
         </tr>
     }
@@ -139,8 +143,8 @@
 <h5>Students within course</h5>
 <table>
     <tr>
-        <th>StudentId</th>
-        <th>CourseId</th>
+        <th>StudentAuId</th>
+        <th>CourseName</th>
         <th>Coursed passed</th>
         <th>Course active</th>
     </tr>
@@ -148,10 +152,28 @@
     @foreach (var CourseStudent in @Model.CourseStudents)
     {
         <tr>
-            <td>@CourseStudent.StudentID</td>
-            <td>@CourseStudent.CourseID</td>
+            <td>@CourseStudent.StudentAuId</td>
+            <td>@CourseStudent.CourseName</td>
             <td>@CourseStudent.IsCoursePassed</td>
             <td>@CourseStudent.IsCourseActive</td>
+        </tr>
+    }
+</table>
+
+<br/>
+
+<h5>Student group</h5>
+<table>
+    <tr>
+        <th>StudentName</th>
+        <th>GroupNr</th>
+    </tr>
+
+    @foreach (var studentgrop in @Model.StudentGroups)
+    {
+        <tr>
+            <td>@studentgrop.StudentName</td>
+            <td>@studentgrop.GroupNr</td>
         </tr>
     }
 </table>

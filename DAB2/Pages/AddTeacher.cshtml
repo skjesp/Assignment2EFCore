@@ -14,9 +14,9 @@
             <hr />
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
-                <label>Au-id</label>
-                <input asp-for="Teacher.TeacherId" class="form-control" placeholder="123456"/>
-                <span asp-validation-for="Teacher.TeacherId" class="text-danger"></span>
+                <label asp-for="Teacher.AuId"></label>
+                <input asp-for="Teacher.AuId" class="form-control" placeholder="123456"/>
+                <span asp-validation-for="Teacher.AuId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Teacher.Birthday"></label>

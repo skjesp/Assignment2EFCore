@@ -32,6 +32,8 @@ namespace DAB2.Pages
 
         public List<GroupAssignment> GroupAssignments { get; set; }
 
+        public List<StudentGroup> StudentGroups { get; set; }
+
         public async Task OnGetAsync()
         {
             //Load list of Courses
@@ -52,12 +54,61 @@ namespace DAB2.Pages
             //Load list of Groups
             Groups = await _db.Groups.AsNoTracking().ToListAsync();
 
-            //Load list of GroupAssignment
+            //Load list of GroupAssignments
             GroupAssignments = await _db.GroupAssignments.AsNoTracking().ToListAsync();
+
+            //Load list of StudentGroups
+            StudentGroups = await _db.StudentGroups.AsNoTracking().ToListAsync();
         }
 
-        public async Task OnPostAsync()
+        //Search students by AU-id and get Courses with status and grade.
+        public async Task<IActionResult> OnPostSearchStudentAsync(string studentId)
         {
+            var studentcourse = from sc in _db.CourseStudents
+                select sc;
+        
+            if (!string.IsNullOrEmpty(studentId))
+            {
+                studentcourse = studentcourse.Where(s => s.StudentAuId.Equals(studentId));
+
+                //Check if we found anyting
+                if (studentcourse.AsNoTracking().ToList().Count != 0)
+                {
+                    //Succes found a match
+
+                } else {
+
+                    //Failed no match
+                    return RedirectToPage();
+                }
+
+            } else {
+
+                //Do nothing if no search id id entered.
+                
+            }
+                //Update tables
+                CourseStudents = await studentcourse.AsNoTracking().ToListAsync();
+
+                //Load list of Courses
+                Courses = await _db.Courses.AsNoTracking().ToListAsync();
+
+                //Load list of Teachers
+                Teachers = await _db.Teachers.AsNoTracking().ToListAsync();
+
+                //Load list of Students
+                Students = await _db.Students.AsNoTracking().ToListAsync();
+
+                //Load list of Assignments
+                Assignments = await _db.Assignments.AsNoTracking().ToListAsync();
+
+                //Load list of Groups
+                Groups = await _db.Groups.AsNoTracking().ToListAsync();
+
+                //Load list of GroupAssignment
+                GroupAssignments = await _db.GroupAssignments.AsNoTracking().ToListAsync();       
+
+            return Page();
             //Update current page.
         }
     }

@@ -29,19 +29,35 @@ namespace DAB2.Pages
 
         public List<SelectListItem> listGrades { get; set; }
 
+        public List<SelectListItem> listTeachers { get; set; }
+
+        [BindProperty]
+        public InputModel Input { get; set; }
+
+        public class InputModel
+        {
+            public int groupId { get; set; }
+
+            public int assignmentId { get; set; }
+
+            public string grade { get; set; }
+
+            public int teacherId { get; set; }
+        }
+
         public void OnGet()
         {
             List<SelectListItem> listGroup = new List<SelectListItem>();   
             foreach (var group in _db.Groups)
             {
-                listGroup.Add(new SelectListItem() { Value = group.GroupId.ToString(), Text = group.GroupId.ToString() });
+                listGroup.Add(new SelectListItem() { Value = group.Id.ToString(), Text = group.GroupNr.ToString() });
             }
             listGroups = listGroup;
 
             List<SelectListItem> listAssignment = new List<SelectListItem>();  
             foreach (var assignment in _db.Assignments)
             {
-                listAssignment.Add(new SelectListItem() { Value = assignment.AssignmentId.ToString(), Text = assignment.Name });
+                listAssignment.Add(new SelectListItem() { Value = assignment.Id.ToString(), Text = assignment.Name });
             }
             listAssignments = listAssignment; 
 
@@ -55,6 +71,13 @@ namespace DAB2.Pages
             listGrade.Add(new SelectListItem() { Value = "12", Text = "12"});
 
             listGrades = listGrade;
+
+            List<SelectListItem> listTeacher = new List<SelectListItem>();   
+            foreach (var teacher in _db.Teachers)
+            {
+                listTeacher.Add(new SelectListItem() { Value = teacher.Id.ToString(), Text = teacher.Name });
+            }
+            listTeachers = listTeacher;
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -65,8 +88,22 @@ namespace DAB2.Pages
                 return Page();
             }
 
+            var group = _db.Groups.Single(g => g.Id.Equals(Input.groupId));
+
+            var assignment = _db.Assignments.Single(a => a.Id.Equals(Input.assignmentId));
+
+            var teacher = _db.Teachers.Single(t => t.Id.Equals(Input.teacherId));
+
             //Add object to database & save changes.
-            _db.GroupAssignments.Add(GroupAssignment);
+            _db.GroupAssignments.Add(new GroupAssignment{
+                GroupId = Input.groupId,
+                AssignmentId = Input.assignmentId,
+                GroupNr = group.GroupNr,
+                AssignmentName = assignment.Name,
+                Grade = Input.grade,
+                TeacherId = Input.teacherId,
+                TeacherName = teacher.Name
+            });
             await _db.SaveChangesAsync();
 
             //Redirect to /Index page.

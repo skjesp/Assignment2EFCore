@@ -6,20 +6,20 @@ namespace DAB2.Database
 {
     public class Student
     {
-        [Key]
-        public int StudentId { get; set; } 
+        public int Id { get; set; } 
+
+        [Required]
+        public string AuId { get; set; } 
         
         [Required]
         public string Name { get; set; }
 
         [Required]
-        public string EnrolledDate { get; set; }
+        public string EnrolledDate { get; set; }    
 
         [Required]
         public string GraduationDate { get; set; }
-
-        public int GroupId { get; set; }
-        
+    
         public List<CourseStudent> CourseStudents { get; set; }
 
         public List<StudentGroup> StudentGroup { get; set; }

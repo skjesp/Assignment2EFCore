@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DAB2.Migrations
 {
-    public partial class InitialMigrationFix : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -10,72 +11,75 @@ namespace DAB2.Migrations
                 name: "Assignments",
                 columns: table => new
                 {
-                    AssignmentId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: false),
                     DueDate = table.Column<string>(nullable: false),
                     GroupSize = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Assignments", x => x.AssignmentId);
+                    table.PrimaryKey("PK_Assignments", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Courses",
                 columns: table => new
                 {
-                    CourseId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CourseNr = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: false),
                     ContentId = table.Column<string>(nullable: true),
                     CalendarId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Courses", x => x.CourseId);
+                    table.PrimaryKey("PK_Courses", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Groups",
                 columns: table => new
                 {
-                    GroupId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true)
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    GroupNr = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Groups", x => x.GroupId);
+                    table.PrimaryKey("PK_Groups", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Students",
                 columns: table => new
                 {
-                    StudentId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    AuId = table.Column<string>(nullable: false),
                     Name = table.Column<string>(nullable: false),
                     EnrolledDate = table.Column<string>(nullable: false),
-                    GraduationDate = table.Column<string>(nullable: false),
-                    GroupId = table.Column<int>(nullable: false)
+                    GraduationDate = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Students", x => x.StudentId);
+                    table.PrimaryKey("PK_Students", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Teachers",
                 columns: table => new
                 {
-                    TeacherId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    AuId = table.Column<string>(nullable: false),
                     Birthday = table.Column<string>(nullable: false),
                     Name = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Teachers", x => x.TeacherId);
+                    table.PrimaryKey("PK_Teachers", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -93,38 +97,13 @@ namespace DAB2.Migrations
                         name: "FK_CourseAssignment_Assignments_AssignmentId",
                         column: x => x.AssignmentId,
                         principalTable: "Assignments",
-                        principalColumn: "AssignmentId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_CourseAssignment_Courses_CourseId",
                         column: x => x.CourseId,
                         principalTable: "Courses",
-                        principalColumn: "CourseId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "GroupAssignments",
-                columns: table => new
-                {
-                    GroupId = table.Column<int>(nullable: false),
-                    AssignmentId = table.Column<int>(nullable: false),
-                    Grade = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_GroupAssignments", x => new { x.GroupId, x.AssignmentId });
-                    table.ForeignKey(
-                        name: "FK_GroupAssignments_Assignments_AssignmentId",
-                        column: x => x.AssignmentId,
-                        principalTable: "Assignments",
-                        principalColumn: "AssignmentId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_GroupAssignments_Groups_GroupId",
-                        column: x => x.GroupId,
-                        principalTable: "Groups",
-                        principalColumn: "GroupId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -135,7 +114,9 @@ namespace DAB2.Migrations
                     CourseID = table.Column<int>(nullable: false),
                     StudentID = table.Column<int>(nullable: false),
                     IsCoursePassed = table.Column<bool>(nullable: false),
-                    IsCourseActive = table.Column<bool>(nullable: false)
+                    IsCourseActive = table.Column<bool>(nullable: false),
+                    StudentAuId = table.Column<string>(nullable: true),
+                    CourseName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -144,18 +125,18 @@ namespace DAB2.Migrations
                         name: "FK_CourseStudents_Courses_CourseID",
                         column: x => x.CourseID,
                         principalTable: "Courses",
-                        principalColumn: "CourseId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_CourseStudents_Students_StudentID",
                         column: x => x.StudentID,
                         principalTable: "Students",
-                        principalColumn: "StudentId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "StudentGroup",
+                name: "StudentGroups",
                 columns: table => new
                 {
                     StudentId = table.Column<int>(nullable: false),
@@ -163,18 +144,18 @@ namespace DAB2.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_StudentGroup", x => new { x.StudentId, x.GroupId });
+                    table.PrimaryKey("PK_StudentGroups", x => new { x.StudentId, x.GroupId });
                     table.ForeignKey(
-                        name: "FK_StudentGroup_Groups_GroupId",
+                        name: "FK_StudentGroups_Groups_GroupId",
                         column: x => x.GroupId,
                         principalTable: "Groups",
-                        principalColumn: "GroupId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_StudentGroup_Students_StudentId",
+                        name: "FK_StudentGroups_Students_StudentId",
                         column: x => x.StudentId,
                         principalTable: "Students",
-                        principalColumn: "StudentId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -193,13 +174,47 @@ namespace DAB2.Migrations
                         name: "FK_CourseTeacher_Courses_CourseId",
                         column: x => x.CourseId,
                         principalTable: "Courses",
-                        principalColumn: "CourseId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_CourseTeacher_Teachers_TeacherId",
                         column: x => x.TeacherId,
                         principalTable: "Teachers",
-                        principalColumn: "TeacherId",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "GroupAssignments",
+                columns: table => new
+                {
+                    GroupId = table.Column<int>(nullable: false),
+                    AssignmentId = table.Column<int>(nullable: false),
+                    Grade = table.Column<string>(nullable: true),
+                    GroupNr = table.Column<int>(nullable: false),
+                    AssignmentName = table.Column<string>(nullable: true),
+                    TeacherId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GroupAssignments", x => new { x.GroupId, x.AssignmentId });
+                    table.ForeignKey(
+                        name: "FK_GroupAssignments_Assignments_AssignmentId",
+                        column: x => x.AssignmentId,
+                        principalTable: "Assignments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_GroupAssignments_Groups_GroupId",
+                        column: x => x.GroupId,
+                        principalTable: "Groups",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_GroupAssignments_Teachers_TeacherId",
+                        column: x => x.TeacherId,
+                        principalTable: "Teachers",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -224,8 +239,13 @@ namespace DAB2.Migrations
                 column: "AssignmentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_StudentGroup_GroupId",
-                table: "StudentGroup",
+                name: "IX_GroupAssignments_TeacherId",
+                table: "GroupAssignments",
+                column: "TeacherId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StudentGroups_GroupId",
+                table: "StudentGroups",
                 column: "GroupId");
         }
 
@@ -244,16 +264,16 @@ namespace DAB2.Migrations
                 name: "GroupAssignments");
 
             migrationBuilder.DropTable(
-                name: "StudentGroup");
+                name: "StudentGroups");
 
             migrationBuilder.DropTable(
                 name: "Courses");
 
             migrationBuilder.DropTable(
-                name: "Teachers");
+                name: "Assignments");
 
             migrationBuilder.DropTable(
-                name: "Assignments");
+                name: "Teachers");
 
             migrationBuilder.DropTable(
                 name: "Groups");

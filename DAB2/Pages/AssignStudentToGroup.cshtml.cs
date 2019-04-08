@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,32 +10,36 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DAB2.Pages
 {
-    public class EnrollStudentInCourseModel : PageModel
+    public class AssignStudenToGroupModel : PageModel
     {
         private readonly AppDbContext _db;
 
-        public EnrollStudentInCourseModel(AppDbContext db)
+        public AssignStudenToGroupModel(AppDbContext db)
         {
             _db = db;
         }
 
         [BindProperty]
-        public InputModel Input { get; set; }
-
-        public class InputModel
-        {
-            public int courseId { get; set; }
-
-            public int studentId { get; set; }
-
-            public bool isCoursePassed { get; set; }
-
-            public bool isCourseActive { get; set; }
-        }
+        public StudentGroup StudentGroup { get; set; }
 
         public List<SelectListItem> listStudents { get; set; }
 
-        public List<SelectListItem> listCourses { get; set; }
+        public List<SelectListItem> listGroups { get; set; }
+
+
+        [BindProperty]
+        public InputModel Input{ get; set; }
+
+        public class InputModel
+        {
+            public int studentId { get; set; }
+
+            public int groupId { get; set; }
+
+            public string studentName { get; set; }
+
+            public int groupNr { get; set; }
+        }
 
         public void OnGet()
         {
@@ -46,36 +50,33 @@ namespace DAB2.Pages
             }
             listStudents = listStudent;
 
-            List<SelectListItem> listCourse = new List<SelectListItem>();  
-            foreach (var course in _db.Courses)
+            List<SelectListItem> listGroup = new List<SelectListItem>();  
+            foreach (var group in _db.Groups)
             {
-                listCourse.Add(new SelectListItem() { Value = course.Id.ToString(), Text = course.Name });
+                listGroup.Add(new SelectListItem() { Value = group.Id.ToString(), Text = group.GroupNr.ToString() });
             }
-            listCourses = listCourse;
+            listGroups = listGroup;
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
             //Validedata ModelState is valid.
-            if (!ModelState.IsValid)
+            if(!ModelState.IsValid)
             {
                 return Page();
             }
 
             var student = _db.Students.Single(s => s.Id.Equals(Input.studentId));
 
-            var course = _db.Courses.Single(g => g.Id.Equals(Input.courseId));
+            var group = _db.Groups.Single(g => g.Id.Equals(Input.groupId));
 
-            //Add object of CourseStudent to database & save changes.
-            _db.Add(new CourseStudent{
-                CourseID = Input.courseId,
-                StudentID = Input.studentId,
-                StudentAuId = student.AuId,
-                CourseName = course.Name,
-                IsCourseActive = Input.isCourseActive,
-                IsCoursePassed = Input.isCoursePassed
+            //Add object to database & save changes.
+            _db.StudentGroups.Add(new StudentGroup{
+                StudentId = Input.studentId,
+                GroupId = Input.groupId,
+                StudentName = student.Name,
+                GroupNr = group.GroupNr
             });
-
             await _db.SaveChangesAsync();
 
             //Redirect to /Index page.
