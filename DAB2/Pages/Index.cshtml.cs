@@ -49,16 +49,16 @@ namespace DAB2.Pages
             Assignments = await _db.Assignments.AsNoTracking().ToListAsync();
 
             //Load list of CourseStudents
-            CourseStudents = await _db.CourseStudents.AsNoTracking().ToListAsync();
+            CourseStudents = await _db.CourseStudents.AsNoTracking().Include(cs=>cs.Student).Include(cs=>cs.Course).ToListAsync();
 
             //Load list of Groups
             Groups = await _db.Groups.AsNoTracking().ToListAsync();
 
             //Load list of GroupAssignments
-            GroupAssignments = await _db.GroupAssignments.AsNoTracking().ToListAsync();
+            GroupAssignments = await _db.GroupAssignments.AsNoTracking().Include(ga=>ga.Group).Include(ga=>ga.Assignment).Include(ga=>ga.Teacher).ToListAsync();
 
             //Load list of StudentGroups
-            StudentGroups = await _db.StudentGroups.AsNoTracking().ToListAsync();
+            StudentGroups = await _db.StudentGroups.AsNoTracking().Include(sg=>sg.Student).Include(sg=>sg.Group).ToListAsync();
         }
     }
 }

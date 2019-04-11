@@ -23,7 +23,5 @@ namespace DAB2.Database
         public List<CourseStudent> CourseStudents { get; set; }
 
         public List<StudentGroup> StudentGroup { get; set; }
-
-        public int? GroupId { get; set; }
     }
 }

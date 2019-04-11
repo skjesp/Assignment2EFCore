@@ -69,9 +69,9 @@ namespace DAB2.Pages
             //Add object of CourseStudent to database & save changes.
             _db.Add(new CourseStudent{
                 CourseID = Input.courseId,
+                Course = course,
                 StudentID = Input.studentId,
-                StudentAuId = student.AuId,
-                CourseName = course.Name,
+                Student = student,
                 IsCourseActive = Input.isCourseActive,
                 IsCoursePassed = Input.isCoursePassed
             });

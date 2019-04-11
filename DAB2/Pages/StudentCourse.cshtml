@@ -36,8 +36,8 @@
     @foreach (var CourseStudent in @Model.CourseStudents)
     {
         <tr>
-            <td>@CourseStudent.StudentAuId</td>
-            <td>@CourseStudent.CourseName</td>
+            <td>@CourseStudent.Student.AuId</td>
+            <td>@CourseStudent.Course.Name</td>
             <td>@CourseStudent.IsCoursePassed</td>
             <td>@CourseStudent.IsCourseActive</td>
         </tr>

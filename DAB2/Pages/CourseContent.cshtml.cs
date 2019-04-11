@@ -57,7 +57,7 @@ namespace DAB2.Pages
                 //Do nothing if no search-string id entered.
             }
             //Load list of StudentGroups
-            Contents = await courseContent.AsNoTracking().ToListAsync();
+            Contents = await courseContent.AsNoTracking().Include(c=>c.Course).ToListAsync();
 
         //Update current page.
         return Page();

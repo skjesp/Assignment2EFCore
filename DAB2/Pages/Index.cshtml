@@ -126,9 +126,9 @@
     @foreach (var groupAssignment in @Model.GroupAssignments)
     {
         <tr>
-            <td>@groupAssignment.GroupNr</td>
-            <td>@groupAssignment.AssignmentName</td>
-            <td>@groupAssignment.TeacherName</td>
+            <td>@groupAssignment.Group.GroupNr</td>
+            <td>@groupAssignment.Assignment.Name</td>
+            <td>@groupAssignment.Teacher.Name</td>
             <td>@groupAssignment.Grade</td>
         </tr>
     }
@@ -146,8 +146,8 @@
     @foreach (var studentgrop in @Model.StudentGroups)
     {
         <tr>
-            <td>@studentgrop.StudentName</td>
-            <td>@studentgrop.GroupNr</td>
+            <td>@studentgrop.Student.Name</td>
+            <td>@studentgrop.Group.GroupNr</td>
         </tr>
     }
 </table>

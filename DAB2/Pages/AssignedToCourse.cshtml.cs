@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using DAB2.Database;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 
 
 namespace DAB2.Pages
@@ -53,7 +54,6 @@ namespace DAB2.Pages
                 else
                 {
                     //Failed no match reload page - Show all.
-                    return RedirectToPage();
                 }
             }
             else
@@ -61,7 +61,7 @@ namespace DAB2.Pages
                 //Do nothing if no search-string id entered.
             }
             //Load list of StudentGroups
-            CourseTeachers = await courseteacher.AsNoTracking().ToListAsync();
+            CourseTeachers = await courseteacher.AsNoTracking().Include(s=>s.Course).Include(s=>s.Teacher).ToListAsync();
 
 
 
@@ -79,7 +79,6 @@ namespace DAB2.Pages
                 else
                 {
                     //Failed no match reload page - Show all.
-                    return RedirectToPage();
                 }
             }
             else
@@ -87,7 +86,7 @@ namespace DAB2.Pages
                 //Do nothing if no search-string id entered.
             }
             //Load list of StudentGroups
-            CourseStudent = await coursestudent.AsNoTracking().ToListAsync();
+            CourseStudent = await coursestudent.AsNoTracking().Include(s=>s.Student).Include(s=>s.Course).ToListAsync();
             return Page();
         }
     }

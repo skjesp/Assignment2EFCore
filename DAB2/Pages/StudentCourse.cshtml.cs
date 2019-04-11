@@ -39,7 +39,7 @@ namespace DAB2.Pages
         
             if (!string.IsNullOrEmpty(Input.searchString))
             {
-                courseStudents = courseStudents.Where(s => s.StudentAuId.Contains(Input.searchString));
+                courseStudents = courseStudents.Where(s => s.Student.AuId.Contains(Input.searchString));
 
                 //Check if we found anyting
                 if (courseStudents.AsNoTracking().ToList().Count != 0)

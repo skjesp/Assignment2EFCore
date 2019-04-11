@@ -73,9 +73,9 @@ namespace DAB2.Pages
             //Add object to database & save changes.
             _db.StudentGroups.Add(new StudentGroup{
                 StudentId = Input.studentId,
+                Student = student,
                 GroupId = Input.groupId,
-                StudentName = student.Name,
-                GroupNr = group.GroupNr
+                Group = group
             });
             await _db.SaveChangesAsync();
 

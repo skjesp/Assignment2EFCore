@@ -29,15 +29,15 @@
 <table>
     <tr>
         <th>TeacherAuId</th>
-        <th>CourseName</th>
+        <th>Name</th>
         <th>IsAssistant</th>
     </tr>
 
     @foreach (var courseTeacher in @Model.CourseTeachers)
     {
         <tr>
-            <td>@courseTeacher.TeacherAuId</td>
-            <td>@courseTeacher.CourseName</td>
+            <td>@courseTeacher.Teacher.AuId</td>
+            <td>@courseTeacher.Teacher.Name</td>
             <td>@courseTeacher.IsAssistant</td>
         </tr>
     }
@@ -49,14 +49,14 @@
 <table>
     <tr>
         <th>StudentAuId</th>
-        <th>CourseName</th>
+        <th>Name</th>
     </tr>
 
     @foreach (var CourseStudent in @Model.CourseStudent)
     {
         <tr>
-            <td>@CourseStudent.StudentAuId</td>
-            <td>@CourseStudent.CourseName</td>
+            <td>@CourseStudent.Student.AuId</td>
+            <td>@CourseStudent.Student.Name</td>
         </tr>
     }
 </table>
