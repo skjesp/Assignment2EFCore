@@ -78,3 +78,5 @@ C:\Users\aliel\Desktop\IKT Noter og opgaver\4 semester\DAB\Assignment2EFCore\DAB
 C:\Users\aliel\Desktop\IKT Noter og opgaver\4 semester\DAB\Assignment2EFCore\DAB2\obj\Debug\netcoreapp2.2\DAB2.pdb
 C:\Users\aliel\Desktop\IKT Noter og opgaver\4 semester\DAB\Assignment2EFCore\DAB2\obj\Debug\netcoreapp2.2\DAB2.csproj.CopyComplete
 C:\Users\aliel\Desktop\IKT Noter og opgaver\4 semester\DAB\Assignment2EFCore\DAB2\obj\Debug\netcoreapp2.2\Razor\Pages\GradeStudent.g.cshtml.cs
+C:\Users\Sebas\Documents\GitHub\Assignment2EFCore\DAB2\obj\Debug\netcoreapp2.2\DAB2.csprojAssemblyReference.cache
+C:\Users\Sebas\Documents\GitHub\Assignment2EFCore\DAB2\obj\Debug\netcoreapp2.2\Razor\Pages\GradeStudent.g.cshtml.cs

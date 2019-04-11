@@ -52,6 +52,8 @@ namespace DAB2.Migrations
 
                     b.Property<int>("CourseId");
 
+                    b.Property<string>("CourseId1");
+
                     b.Property<string>("GroupSignupLink")
                         .IsRequired();
 
@@ -60,17 +62,17 @@ namespace DAB2.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CourseId")
-                        .IsUnique();
+                    b.HasIndex("CourseId1")
+                        .IsUnique()
+                        .HasFilter("[CourseId1] IS NOT NULL");
 
                     b.ToTable("Content");
                 });
 
             modelBuilder.Entity("DAB2.Database.Course", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<int>("CourseNr");
 
@@ -84,7 +86,7 @@ namespace DAB2.Migrations
 
             modelBuilder.Entity("DAB2.Database.CourseAssignment", b =>
                 {
-                    b.Property<int>("CourseId");
+                    b.Property<string>("CourseId");
 
                     b.Property<int>("AssignmentId");
 
@@ -101,9 +103,11 @@ namespace DAB2.Migrations
                 {
                     b.Property<int>("StudentID");
 
-                    b.Property<int>("CourseID");
+                    b.Property<string>("CourseID");
 
                     b.Property<string>("CourseName");
+
+                    b.Property<string>("Grade");
 
                     b.Property<bool>("IsCourseActive");
 
@@ -120,7 +124,7 @@ namespace DAB2.Migrations
 
             modelBuilder.Entity("DAB2.Database.CourseTeacher", b =>
                 {
-                    b.Property<int>("CourseId");
+                    b.Property<string>("CourseId");
 
                     b.Property<int>("TeacherId");
 
@@ -235,8 +239,7 @@ namespace DAB2.Migrations
                 {
                     b.HasOne("DAB2.Database.Course", "Course")
                         .WithOne("Content")
-                        .HasForeignKey("DAB2.Database.Content", "CourseId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("DAB2.Database.Content", "CourseId1");
                 });
 
             modelBuilder.Entity("DAB2.Database.CourseAssignment", b =>

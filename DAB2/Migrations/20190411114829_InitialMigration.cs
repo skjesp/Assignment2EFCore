@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DAB2.Migrations
 {
-    public partial class InitalMigrations : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -26,8 +26,7 @@ namespace DAB2.Migrations
                 name: "Courses",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<string>(nullable: false),
                     CourseNr = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: false)
                 },
@@ -91,24 +90,25 @@ namespace DAB2.Migrations
                     AudioLink = table.Column<string>(nullable: false),
                     VideoLink = table.Column<string>(nullable: false),
                     ContentAreaId = table.Column<string>(nullable: true),
-                    CourseId = table.Column<int>(nullable: false)
+                    CourseId = table.Column<int>(nullable: false),
+                    CourseId1 = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Content", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Content_Courses_CourseId",
-                        column: x => x.CourseId,
+                        name: "FK_Content_Courses_CourseId1",
+                        column: x => x.CourseId1,
                         principalTable: "Courses",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
                 name: "CourseAssignment",
                 columns: table => new
                 {
-                    CourseId = table.Column<int>(nullable: false),
+                    CourseId = table.Column<string>(nullable: false),
                     AssignmentId = table.Column<int>(nullable: false),
                     Active = table.Column<bool>(nullable: false)
                 },
@@ -133,10 +133,11 @@ namespace DAB2.Migrations
                 name: "CourseStudents",
                 columns: table => new
                 {
-                    CourseID = table.Column<int>(nullable: false),
+                    CourseID = table.Column<string>(nullable: false),
                     StudentID = table.Column<int>(nullable: false),
                     IsCoursePassed = table.Column<bool>(nullable: false),
                     IsCourseActive = table.Column<bool>(nullable: false),
+                    Grade = table.Column<string>(nullable: true),
                     StudentAuId = table.Column<string>(nullable: true),
                     CourseName = table.Column<string>(nullable: true)
                 },
@@ -187,7 +188,7 @@ namespace DAB2.Migrations
                 name: "CourseTeacher",
                 columns: table => new
                 {
-                    CourseId = table.Column<int>(nullable: false),
+                    CourseId = table.Column<string>(nullable: false),
                     TeacherId = table.Column<int>(nullable: false),
                     IsAssistant = table.Column<bool>(nullable: false)
                 },
@@ -244,10 +245,11 @@ namespace DAB2.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Content_CourseId",
+                name: "IX_Content_CourseId1",
                 table: "Content",
-                column: "CourseId",
-                unique: true);
+                column: "CourseId1",
+                unique: true,
+                filter: "[CourseId1] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CourseAssignment_AssignmentId",
