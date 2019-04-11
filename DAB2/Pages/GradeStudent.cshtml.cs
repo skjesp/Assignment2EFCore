@@ -71,25 +71,29 @@ namespace DAB2.Pages
                 return Page();
             }
 
-            // var student = _db.Students.Single(g => g.Id.Equals(Input.studentId));
-            // var course = _db.Courses.Single(a => a.Id.Equals(Input.courseId));
+            var student = _db.Students.Single(g => g.Id.Equals(Input.studentId));
+            var course = _db.Courses.Single(a => a.Id.Equals(Input.courseId));
 
-            var currentStudent = await _db.CourseStudents.SingleAsync(s => s.Equals(Input.studentId) && s.Equals(Input.courseId));
-            
+            //var currentStudent = await _db.CourseStudents.SingleAsync(s => s.Equals(Input.studentId) && s.Equals(Input.courseId));
+
+            //currentStudent.Grade = Input.grade;
+            var currentStudent = _db.CourseStudents.Single(a => a.StudentID.Equals(Input.studentId) && a.CourseID.Equals(Input.courseId));
+
+            //Add object to database & save changes.
+            //_db.CourseStudents.Add(new CourseStudent
+            //{
+            //    StudentID = Input.studentId,
+            //    CourseID = Input.courseId,
+            //    CourseName = course.Name,
+            //    StudentAuId = student.Name,
+            //    Grade = Input.grade,
+            //});
+
             currentStudent.Grade = Input.grade;
-
-            // //Add object to database & save changes.
-            // _db.CourseStudents.Add(new CourseStudent
-            // {
-            //     StudentID = Input.studentId,
-            //     CourseID = Input.courseId,
-            //     CourseName = course.Name,
-            //     StudentAuId = student.Name,
-            //     Grade = Input.grade,
-            // });
+            _db.Attach(currentStudent).State = EntityState.Modified;
 
             //Check for state-changes (some or all values) and attached new values.
-            _db.Attach(currentStudent).State = EntityState.Modified;
+            //_db.Attach(currentStudent).State = EntityState.Modified;
 
             await _db.SaveChangesAsync();
 
