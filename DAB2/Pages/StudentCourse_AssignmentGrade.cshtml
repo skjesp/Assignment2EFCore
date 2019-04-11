@@ -1,0 +1,44 @@
+﻿@page
+@model DAB2.Pages.StudentCourse_AssignmentGradeModel
+@{
+}
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <h5>Find assignment and grade by auid and courseid</h5>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="Input.searchAUID" class="form-control" placeholder="au123456" />
+                <span asp-validation-for="Input.searchAUID" class="text-danger"></span>
+                <input asp-for="Input.searchCourseID" class="form-control" placeholder="1" />
+                <span asp-validation-for="Input.searchCourseID" class="text-danger"></span>
+            </div>
+            <hr />
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+    </div>
+</div>
+
+<br />
+
+<h5>Results</h5>
+<table>
+    <tr>
+        <th>Assignment</th>
+        <th>Grade</th>
+    </tr>
+    
+    @{
+        if (@Model.result != null)
+        {
+            @foreach (var Element in @Model.result)
+             {
+                 <tr>
+                     <td>@Element.AssignmentName</td>
+                     <td>@Element.Grade</td>
+                 </tr>
+             }
+        }
+    }
+</table>
