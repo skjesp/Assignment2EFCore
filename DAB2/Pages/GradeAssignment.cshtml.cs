@@ -74,7 +74,7 @@ namespace DAB2.Pages
             List<SelectListItem> listTeacher = new List<SelectListItem>();   
             foreach (var teacher in _db.Teachers)
             {
-                listTeacher.Add(new SelectListItem() { Value = teacher.Id.ToString(), Text = teacher.Name });
+                listTeacher.Add(new SelectListItem() { Value = teacher.Id.ToString(), Text = teacher.AuId });
             }
             listTeachers = listTeacher;
         }

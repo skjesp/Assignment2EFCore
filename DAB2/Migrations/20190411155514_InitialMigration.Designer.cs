@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAB2.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20190411150242_CourseStudentGradeStringToInt")]
-    partial class CourseStudentGradeStringToInt
+    [Migration("20190411155514_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

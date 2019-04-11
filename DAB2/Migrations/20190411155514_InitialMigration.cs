@@ -137,7 +137,7 @@ namespace DAB2.Migrations
                     StudentID = table.Column<int>(nullable: false),
                     IsCoursePassed = table.Column<bool>(nullable: false),
                     IsCourseActive = table.Column<bool>(nullable: false),
-                    Grade = table.Column<string>(nullable: true)
+                    Grade = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {

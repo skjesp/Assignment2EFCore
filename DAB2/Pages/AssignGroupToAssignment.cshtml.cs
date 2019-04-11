@@ -26,6 +26,8 @@ namespace DAB2.Pages
 
         public List<SelectListItem> listAssignments { get; set; }
 
+        public List<SelectListItem> listTeachers { get; set; }
+
 
         [BindProperty]
         public InputModel Input { get; set; }
@@ -35,6 +37,8 @@ namespace DAB2.Pages
             public int groupId { get; set; }
 
             public int assignmentId { get; set; }
+
+            public int teacherId { get; set; }
         }
 
         public void OnGet()
@@ -52,6 +56,13 @@ namespace DAB2.Pages
                 listAssignment.Add(new SelectListItem() { Value = assignment.Id.ToString(), Text = assignment.Name });
             }
             listAssignments = listAssignment;
+
+            List<SelectListItem> listTeacher = new List<SelectListItem>();
+            foreach (var teacher in _db.Teachers)
+            {
+                listTeacher.Add(new SelectListItem() { Value = teacher.Id.ToString(), Text = teacher.AuId });
+            }
+            listTeachers = listTeacher;
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -66,6 +77,8 @@ namespace DAB2.Pages
 
             var assingment = _db.Assignments.Single(g => g.Id.Equals(Input.assignmentId));
 
+            var teacher = _db.Teachers.Single(t => t.Id.Equals(Input.teacherId));
+
             //Add object to database & save changes.
             _db.GroupAssignments.Add(new GroupAssignment
             {
@@ -74,7 +87,8 @@ namespace DAB2.Pages
                 AssignmentId = Input.assignmentId,
                 Assignment = assingment,
                 Grade = null,
-                Teacher = null
+                TeacherId = Input.teacherId,
+                Teacher = teacher
             });
             await _db.SaveChangesAsync();
 

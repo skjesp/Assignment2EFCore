@@ -11,7 +11,7 @@
     <div class="col-md-6">
         <form method="post">
             <h5>Select a student and a group and assign.</h5>
-            <hr/>
+            <hr />
             <div asp-validation-summary="All" class="text-danger"></div>
 
             <div class="form-group">
@@ -25,9 +25,15 @@
                 <select asp-for="Input.assignmentId" asp-items="Model.listAssignments" class="form-control"></select>
                 <span asp-validation-for="Input.assignmentId" class="text-danger"></span>
             </div>
-            
+
+            <div class="form-group">
+                <label asp-for="Input.teacherId"></label>
+                <select asp-for="Input.teacherId" asp-items="Model.listTeachers" class="form-control"></select>
+                <span asp-validation-for="Input.teacherId" class="text-danger"></span>
+            </div>
+
             <button type="submit" class="btn btn-primary">Assign</button>
-            <br/>
+            <br />
         </form>
     </div>
 </div>

@@ -49,7 +49,7 @@ namespace DAB2.Pages
             {
                 //Filter elements from dataset. AUID enrolled courseID left.
                 courseStudents = courseStudents.Where(s =>
-                    s.StudentAuId.Contains(Input.searchAUID) && s.Course.CourseNr.Equals(Input.searchCourseID));
+                    s.Student.AuId.Contains(Input.searchAUID) && s.Course.Name.Equals(Input.searchCourseID));
 
                 //Filter groups. Only groups where AUID participate left.
                 studentGroups = studentGroups.Where(s => s.Student.AuId.Contains(Input.searchAUID));
@@ -58,7 +58,7 @@ namespace DAB2.Pages
                 foreach (var GroupNumber in studentGroups)
                 {
                     List<GroupAssignment> newInputs =
-                        groupAssignment.Where(s => s.GroupNr.Equals(GroupNumber.GroupNr)).ToList();
+                        groupAssignment.Where(s => s.Group.GroupNr.Equals(GroupNumber.Group.GroupNr)).ToList();
                     //result.Concat(newInputs);
                     result.AddRange(newInputs);
                 }
