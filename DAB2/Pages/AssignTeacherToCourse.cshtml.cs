@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,11 +10,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DAB2.Pages
 {
-    public class EnrollStudentInCourseModel : PageModel
+    public class AssignTeacherToCourseModel : PageModel
     {
         private readonly AppDbContext _db;
 
-        public EnrollStudentInCourseModel(AppDbContext db)
+        public AssignTeacherToCourseModel(AppDbContext db)
         {
             _db = db;
         }
@@ -26,25 +26,23 @@ namespace DAB2.Pages
         {
             public int courseId { get; set; }
 
-            public int studentId { get; set; }
+            public int teacherId { get; set; }
 
-            public bool isCoursePassed { get; set; }
-
-            public bool isCourseActive { get; set; }
+            public bool isAssistant { get; set; }
         }
 
-        public List<SelectListItem> listStudents { get; set; }
+        public List<SelectListItem> listTeachers { get; set; }
 
         public List<SelectListItem> listCourses { get; set; }
 
         public void OnGet()
         {
-            List<SelectListItem> listStudent = new List<SelectListItem>();   
-            foreach (var student in _db.Students)
+            List<SelectListItem> listTeacher = new List<SelectListItem>();   
+            foreach (var teacher in _db.Teachers)
             {
-                listStudent.Add(new SelectListItem() { Value = student.Id.ToString(), Text = student.AuId });
+                listTeacher.Add(new SelectListItem() { Value = teacher.Id.ToString(), Text = teacher.AuId });
             }
-            listStudents = listStudent;
+            listTeachers = listTeacher;
 
             List<SelectListItem> listCourse = new List<SelectListItem>();  
             foreach (var course in _db.Courses)
@@ -62,18 +60,17 @@ namespace DAB2.Pages
                 return Page();
             }
 
-            var student = _db.Students.Single(s => s.Id.Equals(Input.studentId));
+            var teacher = _db.Teachers.Single(s => s.Id.Equals(Input.teacherId));
 
             var course = _db.Courses.Single(g => g.Id.Equals(Input.courseId));
 
             //Add object of CourseStudent to database & save changes.
-            _db.Add(new CourseStudent{
-                CourseID = Input.courseId,
-                StudentID = Input.studentId,
-                StudentAuId = student.AuId,
+            _db.Add(new CourseTeacher{
+                CourseId = Input.courseId,
+                TeacherId = Input.teacherId,
+                TeacherAuId = teacher.AuId,
                 CourseName = course.Name,
-                IsCourseActive = Input.isCourseActive,
-                IsCoursePassed = Input.isCoursePassed
+                IsAssistant = Input.isAssistant
             });
 
             await _db.SaveChangesAsync();

@@ -23,35 +23,43 @@
     </div>
 </div>
 
+<br/>
+
 <h5>Teachers in course</h5>
 <table>
     <tr>
-        <th>TeacherId</th>
-        <th>Teacher</th>
+        <th>TeacherAuId</th>
+        <th>CourseName</th>
         <th>IsAssistant</th>
     </tr>
 
-    @foreach (var course in @Model.Teachers)
+    @foreach (var courseTeacher in @Model.CourseTeachers)
     {
         <tr>
-            <td>@course.TeacherId</td>
-            <td>@course.Teacher.Name</td>
-            <td>@course.IsAssistant</td>
+            <td>@courseTeacher.TeacherAuId</td>
+            <td>@courseTeacher.CourseName</td>
+            <td>@courseTeacher.IsAssistant</td>
         </tr>
     }
 </table>
+
+<br/>
+
 <h5>Students in course</h5>
 <table>
     <tr>
-        <th>StudentId</th>
-        <th>Student</th>
+        <th>StudentAuId</th>
+        <th>CourseName</th>
     </tr>
 
-    @foreach (var course in @Model.Students)
+    @foreach (var CourseStudent in @Model.CourseStudent)
     {
         <tr>
-            <td>@course.StudentID</td>
-            <td>@course.Student.Name</td>
+            <td>@CourseStudent.StudentAuId</td>
+            <td>@CourseStudent.CourseName</td>
         </tr>
     }
 </table>
+
+
+

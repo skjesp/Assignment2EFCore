@@ -1,0 +1,42 @@
+@page
+@model AssignTeacherToCourseModel
+@{
+    ViewData["Title"] = "Assign teacher to course";
+}
+
+<h3>@ViewData["Title"]</h3>
+
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <h5>Select a teacher and a course and assign.</h5>
+            <hr/>
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Input.teacherId"></label>
+                <select asp-for="Input.teacherId" asp-items="Model.listTeachers" class="form-control"></select>
+                <span asp-validation-for="Input.teacherId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.courseId"></label>
+                <select asp-for="Input.courseId" asp-items="Model.listCourses" class="form-control"></select>
+                <span asp-validation-for="Input.courseId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label>IsAssistant</label>
+                <input type="checkbox" asp-for="Input.isAssistant"/>
+            </div>
+            
+                <button type="submit" class="btn btn-primary">Assign</button>
+            <br/>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

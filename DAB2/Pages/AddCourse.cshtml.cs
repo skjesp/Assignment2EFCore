@@ -33,8 +33,7 @@ namespace DAB2.Pages
             _db.Courses.Add(Course);
             await _db.SaveChangesAsync();
 
-            //Redirect to /Index page.
-            return RedirectToPage("/Index");
+            return RedirectToPage();
         }
     }
 }

@@ -18,8 +18,8 @@ namespace DAB2.Pages
         public AssignedToCourseModel(AppDbContext db)
         {
             _db = db;
-            Teachers=new List<CourseTeacher>();
-            Students=new List<CourseStudent>();
+            CourseTeachers = new List<CourseTeacher>();
+            CourseStudent = new List<CourseStudent>();
         }
 
         [BindProperty]
@@ -33,9 +33,9 @@ namespace DAB2.Pages
             public string searchString { get; set; }
         }
 
-        public List<CourseStudent> Students { get; set; }
-        public List<CourseTeacher> Teachers { get; set; }
+        public List<CourseTeacher> CourseTeachers { get; set; }
 
+        public List<CourseStudent> CourseStudent { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -61,7 +61,9 @@ namespace DAB2.Pages
                 //Do nothing if no search-string id entered.
             }
             //Load list of StudentGroups
-            Teachers = await courseteacher.AsNoTracking().ToListAsync();
+            CourseTeachers = await courseteacher.AsNoTracking().ToListAsync();
+
+
 
             var coursestudent = from st in _db.CourseStudents
                 select st;
@@ -85,7 +87,7 @@ namespace DAB2.Pages
                 //Do nothing if no search-string id entered.
             }
             //Load list of StudentGroups
-            Students = await coursestudent.AsNoTracking().ToListAsync();
+            CourseStudent = await coursestudent.AsNoTracking().ToListAsync();
             return Page();
         }
     }

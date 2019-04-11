@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DAB2.Migrations
 {
-    public partial class InitalMigrations : Migration
+    public partial class InitialMigraiton : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -58,7 +58,8 @@ namespace DAB2.Migrations
                     AuId = table.Column<string>(nullable: false),
                     Name = table.Column<string>(nullable: false),
                     EnrolledDate = table.Column<string>(nullable: false),
-                    GraduationDate = table.Column<string>(nullable: false)
+                    GraduationDate = table.Column<string>(nullable: false),
+                    GroupId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -184,24 +185,26 @@ namespace DAB2.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CourseTeacher",
+                name: "CourseTeachers",
                 columns: table => new
                 {
                     CourseId = table.Column<int>(nullable: false),
                     TeacherId = table.Column<int>(nullable: false),
-                    IsAssistant = table.Column<bool>(nullable: false)
+                    IsAssistant = table.Column<bool>(nullable: false),
+                    TeacherAuId = table.Column<string>(nullable: true),
+                    CourseName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CourseTeacher", x => new { x.CourseId, x.TeacherId });
+                    table.PrimaryKey("PK_CourseTeachers", x => new { x.CourseId, x.TeacherId });
                     table.ForeignKey(
-                        name: "FK_CourseTeacher_Courses_CourseId",
+                        name: "FK_CourseTeachers_Courses_CourseId",
                         column: x => x.CourseId,
                         principalTable: "Courses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CourseTeacher_Teachers_TeacherId",
+                        name: "FK_CourseTeachers_Teachers_TeacherId",
                         column: x => x.TeacherId,
                         principalTable: "Teachers",
                         principalColumn: "Id",
@@ -260,8 +263,8 @@ namespace DAB2.Migrations
                 column: "CourseID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CourseTeacher_TeacherId",
-                table: "CourseTeacher",
+                name: "IX_CourseTeachers_TeacherId",
+                table: "CourseTeachers",
                 column: "TeacherId");
 
             migrationBuilder.CreateIndex(
@@ -292,7 +295,7 @@ namespace DAB2.Migrations
                 name: "CourseStudents");
 
             migrationBuilder.DropTable(
-                name: "CourseTeacher");
+                name: "CourseTeachers");
 
             migrationBuilder.DropTable(
                 name: "GroupAssignments");

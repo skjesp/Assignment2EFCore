@@ -12,5 +12,10 @@ namespace DAB2.Database
         public Teacher Teacher { get; set; }
         
         public bool IsAssistant { get; set; }
+
+
+        public string TeacherAuId { get; set; }
+
+        public string CourseName { get; set; }
     }
 }

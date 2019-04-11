@@ -79,8 +79,7 @@ namespace DAB2.Pages
             });
             await _db.SaveChangesAsync();
 
-            //Redirect to /Index page.
-            return RedirectToPage("/Index");
+            return RedirectToPage();
         }
     }
 }
