@@ -6,7 +6,7 @@ namespace DAB2.Database
 {
     public class CourseAssignment
     {
-        public string CourseId { get; set; }
+        public int CourseId { get; set; }
         public Course Course { get; set; }
         public int AssignmentId { get; set; }
         public Assignment Assignment { get; set; }

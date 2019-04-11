@@ -77,3 +77,4 @@ C:/Users/Sebas/Documents/GitHub/Assignment2EFCore/DAB2/obj/Debug/netcoreapp2.2/D
 /Users/danielappelgren/Documents/GitHub/Assignment2EFCore/DAB2/obj/Debug/netcoreapp2.2/DAB2.Views.pdb
 /Users/danielappelgren/Documents/GitHub/Assignment2EFCore/DAB2/obj/Debug/netcoreapp2.2/DAB2.csproj.CopyComplete
 /Users/danielappelgren/Documents/GitHub/Assignment2EFCore/DAB2/obj/Debug/netcoreapp2.2/Razor/Pages/AssignTeacherToCourse.g.cshtml.cs
+/Users/danielappelgren/Documents/GitHub/Assignment2EFCore/DAB2/obj/Debug/netcoreapp2.2/Razor/Pages/GradeStudent.g.cshtml.cs

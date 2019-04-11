@@ -31,9 +31,9 @@ namespace DAB2.Pages
         {
             public int studentId { get; set; }
 
-            public string grade { get; set; }
+            public int grade { get; set; }
 
-            public string courseId { get; set; }
+            public int courseId { get; set; }
 
         }
         public void OnGet()
@@ -41,7 +41,7 @@ namespace DAB2.Pages
             List<SelectListItem> liststudents = new List<SelectListItem>();
             foreach (var student in _db.Students)
             {
-                liststudents.Add(new SelectListItem() { Value = student.Id.ToString(), Text = student.Name.ToString() });
+                liststudents.Add(new SelectListItem() { Value = student.Id.ToString(), Text = student.AuId.ToString() });
             }
             listStudent = liststudents;
 
@@ -70,10 +70,6 @@ namespace DAB2.Pages
             {
                 return Page();
             }
-
-            var student = _db.Students.Single(g => g.Id.Equals(Input.studentId));
-            var course = _db.Courses.Single(a => a.Id.Equals(Input.courseId));
-
             //var currentStudent = await _db.CourseStudents.SingleAsync(s => s.Equals(Input.studentId) && s.Equals(Input.courseId));
 
             //currentStudent.Grade = Input.grade;
@@ -90,6 +86,17 @@ namespace DAB2.Pages
             //});
 
             currentStudent.Grade = Input.grade;
+            
+            //Student not passed if grade == -3 or 00.
+            if(Input.grade == -3 || Input.grade == 00)
+            {
+                currentStudent.IsCourseActive = true;
+                currentStudent.IsCoursePassed = false;
+            } else {
+                currentStudent.IsCourseActive = false;
+                currentStudent.IsCoursePassed = true;
+            }
+
             _db.Attach(currentStudent).State = EntityState.Modified;
 
             //Check for state-changes (some or all values) and attached new values.
