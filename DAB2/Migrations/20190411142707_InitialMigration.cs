@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DAB2.Migrations
 {
-    public partial class InitialMigraiton : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -58,8 +58,7 @@ namespace DAB2.Migrations
                     AuId = table.Column<string>(nullable: false),
                     Name = table.Column<string>(nullable: false),
                     EnrolledDate = table.Column<string>(nullable: false),
-                    GraduationDate = table.Column<string>(nullable: false),
-                    GroupId = table.Column<int>(nullable: true)
+                    GraduationDate = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -137,9 +136,7 @@ namespace DAB2.Migrations
                     CourseID = table.Column<int>(nullable: false),
                     StudentID = table.Column<int>(nullable: false),
                     IsCoursePassed = table.Column<bool>(nullable: false),
-                    IsCourseActive = table.Column<bool>(nullable: false),
-                    StudentAuId = table.Column<string>(nullable: true),
-                    CourseName = table.Column<string>(nullable: true)
+                    IsCourseActive = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -163,9 +160,7 @@ namespace DAB2.Migrations
                 columns: table => new
                 {
                     StudentId = table.Column<int>(nullable: false),
-                    GroupId = table.Column<int>(nullable: false),
-                    StudentName = table.Column<string>(nullable: true),
-                    GroupNr = table.Column<int>(nullable: false)
+                    GroupId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -190,9 +185,7 @@ namespace DAB2.Migrations
                 {
                     CourseId = table.Column<int>(nullable: false),
                     TeacherId = table.Column<int>(nullable: false),
-                    IsAssistant = table.Column<bool>(nullable: false),
-                    TeacherAuId = table.Column<string>(nullable: true),
-                    CourseName = table.Column<string>(nullable: true)
+                    IsAssistant = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -218,10 +211,7 @@ namespace DAB2.Migrations
                     GroupId = table.Column<int>(nullable: false),
                     AssignmentId = table.Column<int>(nullable: false),
                     Grade = table.Column<string>(nullable: true),
-                    GroupNr = table.Column<int>(nullable: false),
-                    AssignmentName = table.Column<string>(nullable: true),
-                    TeacherId = table.Column<int>(nullable: false),
-                    TeacherName = table.Column<string>(nullable: true)
+                    TeacherId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
