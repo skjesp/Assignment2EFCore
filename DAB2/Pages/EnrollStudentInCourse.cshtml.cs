@@ -24,7 +24,7 @@ namespace DAB2.Pages
 
         public class InputModel
         {
-            public int courseId { get; set; }
+            public string courseId { get; set; }
 
             public int studentId { get; set; }
 
@@ -73,7 +73,8 @@ namespace DAB2.Pages
                 StudentID = Input.studentId,
                 Student = student,
                 IsCourseActive = Input.isCourseActive,
-                IsCoursePassed = Input.isCoursePassed
+                IsCoursePassed = Input.isCoursePassed,
+                Grade = null
             });
 
             await _db.SaveChangesAsync();

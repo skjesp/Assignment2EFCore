@@ -1,0 +1,44 @@
+﻿@page
+@model DAB2.Pages.GradeStudentModel
+@{
+    ViewData["Title"] = "Grade Student";
+
+    <h1>GradeStudent</h1>
+
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post">
+                <h5>Grade a student, by selecting an id, course and a grade.</h5>
+                <hr />
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="Input.studentId"></label>
+                    <select asp-for="Input.studentId" asp-items="Model.listStudent" class="form-control"></select>
+                    <span asp-validation-for="Input.studentId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Input.courseId"></label>
+                    <select asp-for="Input.courseId" asp-items="Model.listCourse" class="form-control"></select>
+                    <span asp-validation-for="Input.courseId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Input.grade"></label>
+                    <select asp-for="Input.grade" asp-items="Model.listGrade" class="form-control"></select>
+                    <span asp-validation-for="Input.grade" class="text-danger"></span>
+                </div>
+
+
+                <button type="submit" class="btn btn-primary">Assign</button>
+                <br />
+            </form>
+        </div>
+    </div>
+}
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+

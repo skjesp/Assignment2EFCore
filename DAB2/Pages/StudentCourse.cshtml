@@ -31,6 +31,7 @@
         <th>CourseName</th>
         <th>Coursed passed</th>
         <th>Course active</th>
+        <td>Grade</td>
     </tr>
 
     @foreach (var CourseStudent in @Model.CourseStudents)
@@ -40,6 +41,7 @@
             <td>@CourseStudent.Course.Name</td>
             <td>@CourseStudent.IsCoursePassed</td>
             <td>@CourseStudent.IsCourseActive</td>
+            <td>@CourseStudent.Grade</td>
         </tr>
     }
 </table>

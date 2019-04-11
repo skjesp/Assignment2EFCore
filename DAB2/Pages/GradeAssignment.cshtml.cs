@@ -20,7 +20,6 @@ namespace DAB2.Pages
             _db = db;
         }
 
-        [BindProperty]
         public GroupAssignment GroupAssignment { get; set; }
 
         public List<SelectListItem> listGroups { get; set; }
@@ -102,6 +101,7 @@ namespace DAB2.Pages
                 TeacherId = Input.teacherId,
                 Teacher = teacher
             });
+            
             await _db.SaveChangesAsync();
 
             return RedirectToPage();
