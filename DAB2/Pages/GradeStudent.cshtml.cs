@@ -18,7 +18,7 @@ namespace DAB2.Pages
         {
             _db = db;
         }
-        [BindProperty]
+
         public CourseStudent courseStudent { get; set; }
 
         public List<SelectListItem> listGrade { get; set; }
@@ -32,7 +32,8 @@ namespace DAB2.Pages
             public int studentId { get; set; }
 
             public string grade { get; set; }
-            public string course { get; set; }
+
+            public string courseId { get; set; }
 
         }
         public void OnGet()
@@ -70,21 +71,26 @@ namespace DAB2.Pages
                 return Page();
             }
 
-            var student = _db.Students.Single(g => g.Id.Equals(Input.studentId));
+            // var student = _db.Students.Single(g => g.Id.Equals(Input.studentId));
+            // var course = _db.Courses.Single(a => a.Id.Equals(Input.courseId));
 
-            var course = _db.Courses.Single(a => a.Id.Equals(Input.course));
+            var currentStudent = await _db.CourseStudents.SingleAsync(s => s.Equals(Input.studentId) && s.Equals(Input.courseId));
+            
+            currentStudent.Grade = Input.grade;
 
+            // //Add object to database & save changes.
+            // _db.CourseStudents.Add(new CourseStudent
+            // {
+            //     StudentID = Input.studentId,
+            //     CourseID = Input.courseId,
+            //     CourseName = course.Name,
+            //     StudentAuId = student.Name,
+            //     Grade = Input.grade,
+            // });
 
+            //Check for state-changes (some or all values) and attached new values.
+            _db.Attach(currentStudent).State = EntityState.Modified;
 
-            //Add object to database & save changes.
-            _db.CourseStudents.Add(new CourseStudent
-            {
-                StudentID = Input.studentId,
-                CourseID = Input.course,
-                CourseName = course.Name,
-                StudentAuId = student.Name,
-                Grade = Input.grade,
-            });
             await _db.SaveChangesAsync();
 
             //Redirect to /Index page.

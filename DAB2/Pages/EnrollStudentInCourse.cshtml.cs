@@ -73,7 +73,8 @@ namespace DAB2.Pages
                 StudentAuId = student.AuId,
                 CourseName = course.Name,
                 IsCourseActive = Input.isCourseActive,
-                IsCoursePassed = Input.isCoursePassed
+                IsCoursePassed = Input.isCoursePassed,
+                Grade = null
             });
 
             await _db.SaveChangesAsync();
