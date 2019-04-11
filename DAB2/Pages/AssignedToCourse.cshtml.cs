@@ -23,19 +23,14 @@ namespace DAB2.Pages
         }
 
         [BindProperty]
-        public inputmodel input
+        public inputmodel Input
         {
             get; set;
         }
 
         public class inputmodel
         {
-            public int CourseID { get; set; }
-        }
-
-        public void OnGet()
-        {
-
+            public string searchString { get; set; }
         }
 
         public List<CourseStudent> Students { get; set; }
@@ -44,23 +39,54 @@ namespace DAB2.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
-            foreach (var course in _db.CourseTeachers.ToList())
-            {
-                if (course.CourseId == input.CourseID)
-                {
-                    Teachers.Add(course);
-                }
-            }
+            var courseteacher = from tr in _db.CourseTeachers
+                select tr;
 
-            foreach (var course in _db.CourseStudents.ToList())
+            if (!string.IsNullOrEmpty(Input.searchString))
             {
-                if (course.CourseID == input.CourseID)
+                courseteacher = courseteacher.Where(s => s.Course.Name.Contains(Input.searchString));
+                //Check if we found anyting
+                if (courseteacher.AsNoTracking().ToList().Count != 0)
                 {
-                    Students.Add(course);
+                    //Succes found a match
+                }
+                else
+                {
+                    //Failed no match reload page - Show all.
+                    return RedirectToPage();
                 }
             }
-            //Redirect to /Index page.
-            return RedirectToPage("/AssignedToCourse");
+            else
+            {
+                //Do nothing if no search-string id entered.
+            }
+            //Load list of StudentGroups
+            Teachers = await courseteacher.AsNoTracking().ToListAsync();
+
+            var coursestudent = from st in _db.CourseStudents
+                select st;
+
+            if (!string.IsNullOrEmpty(Input.searchString))
+            {
+                coursestudent = coursestudent.Where(s => s.Course.Name.Contains(Input.searchString));
+                //Check if we found anyting
+                if (coursestudent.AsNoTracking().ToList().Count != 0)
+                {
+                    //Succes found a match
+                }
+                else
+                {
+                    //Failed no match reload page - Show all.
+                    return RedirectToPage();
+                }
+            }
+            else
+            {
+                //Do nothing if no search-string id entered.
+            }
+            //Load list of StudentGroups
+            Students = await coursestudent.AsNoTracking().ToListAsync();
+            return Page();
         }
     }
 }
