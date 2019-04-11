@@ -19,7 +19,7 @@ namespace DAB2.Database
         
         public DbSet<Group> Groups { get; set; }
 
-        public DbSet<Content> Contents { get; set; }
+        public DbSet<Content> Content { get; set; }
 
         public DbSet<GroupAssignment> GroupAssignments { get; set; }
 

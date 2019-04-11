@@ -34,7 +34,7 @@ namespace DAB2.Pages
         //Search students by AU-id and get Courses with status and grade.
         public async Task<IActionResult> OnPostAsync()
         {
-            var courseContent = from cts in _db.Contents
+            var courseContent = from cts in _db.Content
                 select cts;
                     
             if (!string.IsNullOrEmpty(Input.searchString))
