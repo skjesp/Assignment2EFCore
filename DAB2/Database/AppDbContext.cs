@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.SqlServer;
 namespace DAB2.Database
 {
     public class AppDbContext : DbContext
-    { 
+    {
         public AppDbContext() : base() {}
 
         public DbSet<Course> Courses { get; set; }
@@ -16,7 +16,7 @@ namespace DAB2.Database
         public DbSet<Assignment> Assignments { get; set; }
 
         public DbSet<CourseStudent> CourseStudents { get; set; }
-        
+
         public DbSet<Group> Groups { get; set; }
 
         public DbSet<Content> Content { get; set; }
@@ -24,6 +24,8 @@ namespace DAB2.Database
         public DbSet<GroupAssignment> GroupAssignments { get; set; }
 
         public DbSet<StudentGroup> StudentGroups { get; set; }
+
+        public DbSet<CourseTeacher> CourseTeachers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -48,7 +50,7 @@ namespace DAB2.Database
                 .WithMany(ct => ct.CourseTeacher)
                 .HasForeignKey(ct => ct.TeacherId);
 
-            //For Course - Assignment(many to many relationship) 
+            //For Course - Assignment(many to many relationship)
             modelBuilder.Entity<CourseAssignment>()
                 .HasKey(p => new {p.CourseId, p.AssignmentId});
 

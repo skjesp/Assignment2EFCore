@@ -27,7 +27,7 @@ namespace DAB2.Pages
         public List<Assignment> Assignments { get; set; }
 
         public List<CourseStudent> CourseStudents { get; set; }
-        
+
         public List<Group> Groups { get; set; }
 
         public List<GroupAssignment> GroupAssignments { get; set; }
@@ -47,7 +47,7 @@ namespace DAB2.Pages
 
             //Load list of Assignments
             Assignments = await _db.Assignments.AsNoTracking().ToListAsync();
-            
+
             //Load list of CourseStudents
             CourseStudents = await _db.CourseStudents.AsNoTracking().ToListAsync();
 
@@ -59,6 +59,6 @@ namespace DAB2.Pages
 
             //Load list of StudentGroups
             StudentGroups = await _db.StudentGroups.AsNoTracking().ToListAsync();
-        } 
+        }
     }
 }

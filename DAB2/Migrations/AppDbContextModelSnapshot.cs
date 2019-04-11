@@ -130,7 +130,7 @@ namespace DAB2.Migrations
 
                     b.HasIndex("TeacherId");
 
-                    b.ToTable("CourseTeacher");
+                    b.ToTable("CourseTeachers");
                 });
 
             modelBuilder.Entity("DAB2.Database.Group", b =>
