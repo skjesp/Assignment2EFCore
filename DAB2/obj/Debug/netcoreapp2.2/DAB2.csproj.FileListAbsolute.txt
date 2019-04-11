@@ -37,3 +37,5 @@ C:\Users\Sebas\Documents\GitHub\Assignment2EFCore\DAB2\obj\Debug\netcoreapp2.2\D
 C:\Users\Sebas\Documents\GitHub\Assignment2EFCore\DAB2\obj\Debug\netcoreapp2.2\DAB2.dll
 C:\Users\Sebas\Documents\GitHub\Assignment2EFCore\DAB2\obj\Debug\netcoreapp2.2\DAB2.pdb
 C:\Users\Sebas\Documents\GitHub\Assignment2EFCore\DAB2\obj\Debug\netcoreapp2.2\DAB2.csproj.CopyComplete
+C:\Users\Sebas\Documents\GitHub\Assignment2EFCore\DAB2\obj\Debug\netcoreapp2.2\DAB2.csprojAssemblyReference.cache
+C:\Users\Sebas\Documents\GitHub\Assignment2EFCore\DAB2\obj\Debug\netcoreapp2.2\Razor\Pages\StudentCourse_AssignmentGrade.g.cshtml.cs
