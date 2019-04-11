@@ -7,12 +7,12 @@ namespace DAB2.Database
 {
     public class CourseStudent
     {
-        public string CourseID { get; set; }
+        public int CourseID { get; set; }
         public Course Course { get; set; }
         public int StudentID { get; set; }
         public Student Student { get; set; }
         public bool IsCoursePassed { get; set; }
         public bool IsCourseActive { get; set; }
-        public string Grade { get; set; }
+        public int? Grade { get; set; }
     }
 }

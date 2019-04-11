@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAB2.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20190411114829_InitialMigration")]
+    [Migration("20190411145034_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,8 +54,6 @@ namespace DAB2.Migrations
 
                     b.Property<int>("CourseId");
 
-                    b.Property<string>("CourseId1");
-
                     b.Property<string>("GroupSignupLink")
                         .IsRequired();
 
@@ -64,17 +62,17 @@ namespace DAB2.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CourseId1")
-                        .IsUnique()
-                        .HasFilter("[CourseId1] IS NOT NULL");
+                    b.HasIndex("CourseId")
+                        .IsUnique();
 
                     b.ToTable("Content");
                 });
 
             modelBuilder.Entity("DAB2.Database.Course", b =>
                 {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("CourseNr");
 
@@ -88,7 +86,7 @@ namespace DAB2.Migrations
 
             modelBuilder.Entity("DAB2.Database.CourseAssignment", b =>
                 {
-                    b.Property<string>("CourseId");
+                    b.Property<int>("CourseId");
 
                     b.Property<int>("AssignmentId");
 
@@ -105,17 +103,13 @@ namespace DAB2.Migrations
                 {
                     b.Property<int>("StudentID");
 
-                    b.Property<string>("CourseID");
-
-                    b.Property<string>("CourseName");
+                    b.Property<int>("CourseID");
 
                     b.Property<string>("Grade");
 
                     b.Property<bool>("IsCourseActive");
 
                     b.Property<bool>("IsCoursePassed");
-
-                    b.Property<string>("StudentAuId");
 
                     b.HasKey("StudentID", "CourseID");
 
@@ -126,7 +120,7 @@ namespace DAB2.Migrations
 
             modelBuilder.Entity("DAB2.Database.CourseTeacher", b =>
                 {
-                    b.Property<string>("CourseId");
+                    b.Property<int>("CourseId");
 
                     b.Property<int>("TeacherId");
 
@@ -136,7 +130,7 @@ namespace DAB2.Migrations
 
                     b.HasIndex("TeacherId");
 
-                    b.ToTable("CourseTeacher");
+                    b.ToTable("CourseTeachers");
                 });
 
             modelBuilder.Entity("DAB2.Database.Group", b =>
@@ -158,15 +152,9 @@ namespace DAB2.Migrations
 
                     b.Property<int>("AssignmentId");
 
-                    b.Property<string>("AssignmentName");
-
                     b.Property<string>("Grade");
 
-                    b.Property<int>("GroupNr");
-
                     b.Property<int>("TeacherId");
-
-                    b.Property<string>("TeacherName");
 
                     b.HasKey("GroupId", "AssignmentId");
 
@@ -206,10 +194,6 @@ namespace DAB2.Migrations
 
                     b.Property<int>("GroupId");
 
-                    b.Property<int>("GroupNr");
-
-                    b.Property<string>("StudentName");
-
                     b.HasKey("StudentId", "GroupId");
 
                     b.HasIndex("GroupId");
@@ -241,7 +225,8 @@ namespace DAB2.Migrations
                 {
                     b.HasOne("DAB2.Database.Course", "Course")
                         .WithOne("Content")
-                        .HasForeignKey("DAB2.Database.Content", "CourseId1");
+                        .HasForeignKey("DAB2.Database.Content", "CourseId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DAB2.Database.CourseAssignment", b =>
