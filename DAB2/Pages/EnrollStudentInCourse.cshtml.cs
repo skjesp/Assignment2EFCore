@@ -24,7 +24,7 @@ namespace DAB2.Pages
 
         public class InputModel
         {
-            public int courseId { get; set; }
+            public string courseId { get; set; }
 
             public int studentId { get; set; }
 

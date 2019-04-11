@@ -7,7 +7,7 @@ namespace DAB2.Database
     public class Course
     {
         [Key]
-        public int Id { get; set; } 
+        public string Id { get; set; } 
 
         [Required]
         public int CourseNr { get; set; }
