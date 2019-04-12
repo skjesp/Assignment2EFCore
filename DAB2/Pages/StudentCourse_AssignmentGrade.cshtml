@@ -36,7 +36,14 @@
         <tr>
             <td>@assignment.Assignment.Name</td>
             <td>@assignment.Grade</td>
-            <td>@assignment.Teacher.AuId</td>
+
+            @if(assignment.Teacher != null){
+                <td>@assignment.Teacher.AuId</td>
+            }
+            else
+            {
+                <td></td>
+            }
         </tr>
     }
 </table>

@@ -49,21 +49,31 @@ namespace DAB2.Pages
             {
                 //Filter elements from dataset. AUID enrolled courseID left.
                 studentGroups = studentGroups.Where(s => s.Student.AuId.Equals(Input.searchAUID));
+                var groupids = new List<int>();
                 courseAssignment = courseAssignment.Where(s => s.Course.Name.Equals(Input.searchCourseID));
+                var assignmentids = new List<int>();
                 foreach (var group in studentGroups)
                 {
-                    foreach (var assignment in courseAssignment)
+                    if (!groupids.Contains(group.GroupId))
                     {
-                        groupAssignment = groupAssignment.Where(s => s.Group.GroupNr.Equals(group.Group.GroupNr) && s.Assignment.Id.Equals(assignment.Assignment.Id));
+                        groupids.Add(group.GroupId);
                     }
                 }
-                if (groupAssignment.AsNoTracking().ToList().Count != 0)
+                foreach (var assignment in courseAssignment)
                 {
-                    //Succes found a match
+                    if (!assignmentids.Contains(assignment.AssignmentId))
+                    {
+                        assignmentids.Add(assignment.AssignmentId);
+                    }
+                }
+                groupAssignment = groupAssignment.Where(s => groupids.Contains(s.GroupId)&&assignmentids.Contains(s.AssignmentId));
+                if (groupAssignment.ToList().Count != 0)
+                {
+                //Succes found a match
                 }
                 else
                 {
-                    //Failed no match reload page - Show all.
+                //Failed no match reload page - Show all.
                 }
                 
                 

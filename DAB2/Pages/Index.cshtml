@@ -19,7 +19,10 @@
     <a href="/AddAssignment">Add an assignemt</a>
     <br />
     <a href="/AddGroup">Add a group</a>
+    <br />
 </div>
+
+<br />
 
 <h5>Join functions</h5>
 <div>
@@ -31,6 +34,8 @@
     <br />
 </div>
 
+<br />
+
 <h5>Search functions</h5>
 <div>
     <a href="/StudentCourse">Search Courses by Student AuId</a>
@@ -40,7 +45,10 @@
     <a href="/AssignedToCourse">Search Teachers & Students in Course</a>
     <br />
     <a href="/StudentCourse_AssignmentGrade">Search Grade-assignment by Student auid and Course Name</a>
+    <br />
 </div>
+
+<br />
 
 <h5>Grading functions</h5>
 <div>
@@ -162,7 +170,14 @@
         <tr>
             <td>@groupAssignment.Group.GroupNr</td>
             <td>@groupAssignment.Assignment.Name</td>
-            <td>@groupAssignment.Teacher.Name</td>
+
+            @if(groupAssignment.Teacher != null){
+                <td>@groupAssignment.Teacher.Name</td>
+            }
+            else
+            {
+                <td></td>
+            }
             <td>@groupAssignment.Grade</td>
         </tr>
     }

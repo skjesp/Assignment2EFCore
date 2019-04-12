@@ -13,7 +13,7 @@ namespace DAB2.Database
         public Assignment Assignment { get; set; }
         public string Grade { get; set; }
         //One to Many
-        public int TeacherId { get; set; }
+        public int? TeacherId { get; set; }
         public Teacher Teacher { get; set; }
     }
 }

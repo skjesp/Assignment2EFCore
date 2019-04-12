@@ -4,14 +4,16 @@ using DAB2.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DAB2.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190412100536_Final")]
+    partial class Final
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -153,7 +155,7 @@ namespace DAB2.Migrations
 
                     b.Property<string>("Grade");
 
-                    b.Property<int?>("TeacherId");
+                    b.Property<int>("TeacherId");
 
                     b.HasKey("GroupId", "AssignmentId");
 
@@ -281,7 +283,8 @@ namespace DAB2.Migrations
 
                     b.HasOne("DAB2.Database.Teacher", "Teacher")
                         .WithMany("GroupAssignment")
-                        .HasForeignKey("TeacherId");
+                        .HasForeignKey("TeacherId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DAB2.Database.StudentGroup", b =>
