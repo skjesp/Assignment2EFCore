@@ -1,0 +1,99 @@
+/* Insert into Assignments-table */
+
+INSERT INTO Assignments (Name, DueDate, GroupSize) VALUES 
+('DAB2-Exercise', '15/04-2019', 5),
+('IKN-Exercise6', '25/07-2020', 3)
+
+GO
+
+/* Insert into Course-table */
+
+INSERT INTO Courses (CourseNr, Name) VALUES 
+(100, 'I4-DAB'),
+(200, 'I4-IKN')
+
+GO
+
+/* Insert into Content-table */
+
+INSERT INTO Content (BinaryData, GroupSignupLink, AudioLink, VideoLink, ContentAreaId, CourseId) VALUES 
+(10100101, 'ReplaceboardGroupsDAB.dk' , 'Soundcloud.com', 'youtubeLink.com', 'CourseAreaContent', 1),
+(10000111, 'ReplaceboardGroupsIKN.dk' , 'Soundcloud.com', 'youtubeLink.com', 'CourseAreaContent', 2)
+
+GO
+
+/* Insert into Group-table */
+
+INSERT INTO Groups (GroupNr) VALUES 
+(40), 
+(23), 
+(7)
+
+GO
+
+/* Insert into Student-table */
+
+INSERT INTO Students (AuId, Name, EnrolledDate, GraduationDate) VALUES 
+('au563770', 'Daniel Appelgren', '2017', '2021'),
+('au554936', 'Sebastian Jespersen', '2017', '2021'),
+('au581130', 'Ali el-paplo', '2017', '2021'),
+('au591247', 'Oliver Laursen', '2017', '2021')
+
+GO
+
+/* Insert into Teacher-table */
+
+INSERT INTO Teachers (AuId, Birthday, Name) VALUES 
+('au000001', '01/01-1985', 'Henrik Bitsch Kirk'),
+('au000002', '01/01-1960', 'Jesper Kirstensen'),
+('au000003', '02/01-1950', 'Micheal Sørensen Loft')
+
+GO
+
+/* Insert into Junction-table for Course and Teacher */
+
+INSERT INTO CourseTeachers (CourseId, TeacherId, IsAssistant) VALUES 
+(1, 1, 'false'),
+(2, 2, 'false'),
+(1, 3, 'true')
+
+GO
+
+/* Insert into Junction-table for Course and Assignment */
+
+INSERT INTO CourseAssignments (CourseId, AssignmentId, Active) VALUES
+(1, 1, 'true'),
+(2, 2, 'true')
+
+GO
+
+/* Insert into Junction-table for Course and student (Enrollment of student in course) */
+
+INSERT INTO CourseStudents (CourseID, StudentID, IsCourseActive, IsCoursePassed, Grade) VALUES
+(1, 1, 'true', 'false', null),
+(2, 2, 'true', 'false', null),
+(1, 3, 'false', 'true', 10),
+(2, 4, 'false', 'true', 4)
+
+GO
+
+/* Insert into Junction-table for Student and Group (Enroll student in group) */
+
+INSERT INTO StudentGroups (StudentId, GroupId) VALUES
+(1, 1),
+(2, 1),
+(3, 2),
+(4, 3)
+
+GO
+
+
+/* Insert into Junction-table for Group and Assignment (Grade Assignment for group)*/
+
+INSERT INTO GroupAssignments (GroupId, AssignmentId, Grade, TeacherId) VALUES
+(1, 1, '4', 1),
+(2, 2, null, null)
+
+GO
+
+
