@@ -87,20 +87,15 @@ namespace DAB2.Pages
                 return Page();
             }
 
-            var group = _db.Groups.Single(g => g.Id.Equals(Input.groupId));
-            var assignment = _db.Assignments.Single(a => a.Id.Equals(Input.assignmentId));
+
+            var groupassignment = _db.GroupAssignments.Single(ga =>
+                ga.AssignmentId.Equals(Input.assignmentId) && ga.GroupId.Equals(Input.groupId));
             var teacher = _db.Teachers.Single(t => t.Id.Equals(Input.teacherId));
 
-            //Add object to database & save changes.
-            _db.GroupAssignments.Add(new GroupAssignment{
-                GroupId = Input.groupId,
-                Group = group,
-                AssignmentId = Input.assignmentId,
-                Assignment = assignment,
-                Grade = Input.grade,
-                TeacherId = Input.teacherId,
-                Teacher = teacher
-            });
+            groupassignment.Grade = Input.grade;
+            groupassignment.Teacher = teacher;
+
+            _db.Attach(groupassignment);
             
             await _db.SaveChangesAsync();
 
