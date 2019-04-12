@@ -27,6 +27,9 @@ namespace DAB2.Database
 
         public DbSet<CourseTeacher> CourseTeachers { get; set; }
 
+        public DbSet<CourseAssignment> CourseAssignments { get; set; }
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //optionsBuilder.UseSqlite("Filename=Database.db");

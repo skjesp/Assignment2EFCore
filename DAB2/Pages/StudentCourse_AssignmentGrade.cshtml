@@ -1,4 +1,5 @@
 ﻿@page
+@using DAB2.Database
 @model DAB2.Pages.StudentCourse_AssignmentGradeModel
 @{
 }
@@ -27,18 +28,15 @@
     <tr>
         <th>Assignment</th>
         <th>Grade</th>
+        <th>Grading Teacher</th>
     </tr>
-    
-    @{
-        if (@Model.result != null)
-        {
-            @foreach (var Element in @Model.result)
-             {
-                 <tr>
-                     <td>@Element.Assignment.Name</td>
-                     <td>@Element.Grade</td>
-                 </tr>
-             }
-        }
+
+    @foreach (var assignment in @Model.GroupAssignments)
+    {
+        <tr>
+            <td>@assignment.Assignment.Name</td>
+            <td>@assignment.Grade</td>
+            <td>@assignment.Teacher.AuId</td>
+        </tr>
     }
 </table>

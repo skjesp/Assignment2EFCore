@@ -34,13 +34,13 @@ namespace DAB2.Pages
 
 
         //Searchresult
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
             //Reset result
             result = new List<GroupAssignment>();
 
             //Select database elements
-            var courseStudents = from el in _db.CourseStudents select el;
+            var courseAssignment = from el in _db.CourseAssignments select el;
             var studentGroups = from el in _db.StudentGroups select el;
             var groupAssignment = from el in _db.GroupAssignments select el;
 
@@ -48,45 +48,32 @@ namespace DAB2.Pages
             if (!(string.IsNullOrEmpty(Input.searchAUID) && string.IsNullOrEmpty(Input.searchCourseID)))
             {
                 //Filter elements from dataset. AUID enrolled courseID left.
-                courseStudents = courseStudents.Where(s =>
-                    s.Student.AuId.Contains(Input.searchAUID) && s.Course.Name.Equals(Input.searchCourseID));
-
-                //Filter groups. Only groups where AUID participate left.
-                studentGroups = studentGroups.Where(s => s.Student.AuId.Contains(Input.searchAUID));
-
-                //Find appropriate assignments
-                foreach (var GroupNumber in studentGroups)
+                studentGroups = studentGroups.Where(s => s.Student.AuId.Equals(Input.searchAUID));
+                courseAssignment = courseAssignment.Where(s => s.Course.Name.Equals(Input.searchCourseID));
+                foreach (var group in studentGroups)
                 {
-                    List<GroupAssignment> newInputs =
-                        groupAssignment.Where(s => s.Group.GroupNr.Equals(GroupNumber.Group.GroupNr)).ToList();
-                    //result.Concat(newInputs);
-                    result.AddRange(newInputs);
+                    foreach (var assignment in courseAssignment)
+                    {
+                        groupAssignment = groupAssignment.Where(s => s.Group.GroupNr.Equals(group.Group.GroupNr) && s.Assignment.Id.Equals(assignment.Assignment.Id));
+                    }
                 }
-
-
-                ////Check if we found anyting
-                //if (courseStudents.AsNoTracking().ToList().Count != 0)
-                //{
-                //    //Succes found a match
-
-
-                //}
-                //else
-                //{
-                //    //Failed no match reload page - Show all.
-                //    return RedirectToPage();
-                //}
-                //}
-                //else
-                //{
-                //    //Do nothing if no search-string id entered.
-                //}
-                //Load list of StudentGroups
-                //CourseStudents = await courseStudents.AsNoTracking().ToListAsync();
-
-                //Update current page.
+                if (groupAssignment.AsNoTracking().ToList().Count != 0)
+                {
+                    //Succes found a match
+                }
+                else
+                {
+                    //Failed no match reload page - Show all.
+                }
+                
                 
             }
+            else
+            {
+                //do nothing
+            }
+
+            GroupAssignments = await groupAssignment.AsNoTracking().Include(s => s.Teacher).Include(s => s.Assignment).ToListAsync();
             return Page();
         }
         public void OnGet()
