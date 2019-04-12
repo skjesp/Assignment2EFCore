@@ -8,10 +8,11 @@ Først åbnes Azure Data Studio. Her der forbindes til localhost, hvorefter man 
 #### Step 2
 Efter at repositoriet er downloadet til computeren, skal filstien til projektets solution tilgåes.
 Efter dette indtastes "cmd" i exploren (det felt hvor filstien er angivet). Dette åbner op for kommando-prompten, hvor _working directory_ bør være den mappe hvor solution er.
-
-#### Step 3
 I kommandoprompten indtastes følgende: _dotnet ef database update_. Dette opsætter arkitekturen for databasen.
 
+#### Step 3
+Der indsættes nu dummydata ved at køre SQL-Dummydata querien ind i Azure Data Studio.
+
 #### Step 4
-I kommandoprompten indtastes følgende kommando for at starte hosting af hjemmeside: "dotnet run".
-Herefter hjemmesiden tilgåes i browseren ved at tilgå følgende hjemmeside: https://localhost:5001.
+For at hoste hjemmesiden benyttes ctrl + f5 i visual studio.
+
