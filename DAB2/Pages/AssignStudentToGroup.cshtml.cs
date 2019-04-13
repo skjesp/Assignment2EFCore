@@ -2,11 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using DAB2.Database;
 using Microsoft.AspNetCore.Mvc.Rendering;
+
 
 namespace DAB2.Pages
 {
@@ -77,7 +79,16 @@ namespace DAB2.Pages
                 GroupId = Input.groupId,
                 Group = group
             });
-            await _db.SaveChangesAsync();
+
+
+            try
+            {
+                await _db.SaveChangesAsync();
+            }
+            catch(DbUpdateException ex)
+            {
+                return RedirectToPage("/ErrorPage_Duplication");
+            }
 
             return RedirectToPage();
         }

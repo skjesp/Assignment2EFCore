@@ -90,7 +90,16 @@ namespace DAB2.Pages
                 TeacherId = Input.teacherId,
                 Teacher = teacher
             });
-            await _db.SaveChangesAsync();
+
+            //Exceptionhandling - Presumed that user is trying to duplicate
+            try
+            {
+                await _db.SaveChangesAsync();
+            }
+            catch (DbUpdateException ex)
+            {
+                return RedirectToPage("/ErrorPage_Duplication");
+            }
 
             return RedirectToPage();
         }

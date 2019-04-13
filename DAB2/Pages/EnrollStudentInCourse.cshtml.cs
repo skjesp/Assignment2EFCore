@@ -77,7 +77,15 @@ namespace DAB2.Pages
                 Grade = null
             });
 
-            await _db.SaveChangesAsync();
+            try
+            {
+                await _db.SaveChangesAsync();
+            }
+            catch (DbUpdateException ex)
+            {
+                return RedirectToPage("/ErrorPage_Duplication");
+            }
+
 
             return RedirectToPage();
         }
