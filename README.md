@@ -3,7 +3,7 @@ Dette projekt indeholder en hjemmeside der udviklet i ASP.NET CORE. Her benyttes
 
 ### Getting Started - Opsætning af database
 #### Step 1
-Først åbnes Azure Data Studio. Her der forbindes til localhost, hvorefter man fra "master" databasen kører den vedhæftede SQL-Query der er navngivet SQL-DatabaseCreation.
+Først åbnes Azure Data Studio. Her forbindes der til localhost, hvorefter man fra "master" databasen kører den vedhæftede SQL-Query der er navngivet SQL-DatabaseCreation.
 
 #### Step 2
 Efter at repositoriet er downloadet til computeren, skal filstien til projektets solution tilgåes.
